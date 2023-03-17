@@ -25,11 +25,19 @@ public class User extends BaseEntity {
     @Length(min = 3, message = "Password must be at least 3 characters.")
     private String password;
 
-    @Column(nullable = false)
+    @Column
     private String coordinates;
 
     @OneToOne(mappedBy ="creator")
     private Event event;
+
+    public User(String firstName, String lastName, String email, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.friends = new ArrayList<>();
+    }
 
     public User(String firstName, String lastName, String email, String password, String coordinates) {
         this.firstName = firstName;
@@ -37,8 +45,11 @@ public class User extends BaseEntity {
         this.email = email;
         this.password = password;
         this.coordinates = coordinates;
+        this.friends = new ArrayList<>();
     }
-    public User(){}
+    public User(){
+        this.friends = new ArrayList<>();
+    }
 
 
 

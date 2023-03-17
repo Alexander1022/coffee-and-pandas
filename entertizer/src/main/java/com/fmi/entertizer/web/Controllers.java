@@ -16,7 +16,8 @@ public class Controllers {
     private UserServiceImpl userService;
     @RequestMapping("/all")
     public List<User> getUsers(){
-        return userService.getAllUsers();
+        //return userService.getAllUsers();
+        return null;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)

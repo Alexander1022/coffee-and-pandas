@@ -6,5 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 public interface UserRepository extends CrudRepository<User, Long> {
+    Optional<User> findAllFriends(Long id);
 
+    Optional<User> findFirstByEmail(String email);
+
+    Optional<User> getUserById(Long id);
 }
