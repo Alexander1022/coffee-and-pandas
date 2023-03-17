@@ -1,4 +1,4 @@
-package com.fmi.entertizer.model.entity;
+package com.fmi.entertizer.model.entity.enums;
 
 
 public enum PlaceType {

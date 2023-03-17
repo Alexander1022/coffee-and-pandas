@@ -1,11 +1,11 @@
 package com.fmi.entertizer.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import org.hibernate.validator.constraints.Length;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -35,6 +35,18 @@ public class User extends BaseEntity /* implements UserDetails */ {
         this.coordinates = coordinates;
     }
     public User(){}
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL
+    )
+    private List<UserPlace> userPlace = new ArrayList<>();
+
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL
+    )
+    private List<UserEvent> userEvent = new ArrayList<>();
 
     public String getFirstName() {
         return firstName;
