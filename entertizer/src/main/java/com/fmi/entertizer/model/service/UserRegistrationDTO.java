@@ -12,6 +12,9 @@ public class UserRegistrationDTO {
     @NotBlank(message = "Last name is required")
     private String lastName;
 
+    @NotBlank(message = "Username is required")
+    private String username;
+
     @NotNull
     @Email(message = "Email must be valid")
     private String email;

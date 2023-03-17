@@ -1,5 +1,6 @@
 package com.fmi.entertizer.model.entity;
 
+import com.fmi.entertizer.model.entity.enums.Status;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,7 +14,8 @@ public class UserEvent extends BaseEntity{
     @JoinColumn(name="event_id")
     private Event event;
 
-
+    @Enumerated(EnumType.ORDINAL)
+    private Status invitationStatus;
     public User getUser() {
         return user;
     }

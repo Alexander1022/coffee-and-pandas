@@ -20,12 +20,18 @@ public class User extends BaseEntity /* implements UserDetails */ {
     @Email
     private String email;
 
+    @Column(nullable = false, unique = true)
+    private String username;
+
     @Column(nullable = false, updatable = true)
     @Length(min = 3, message = "Password must be at least 3 characters.")
     private String password;
 
     @Column(nullable = false)
     private String coordinates;
+
+    @OneToOne(mappedBy ="creator")
+    private Event event;
 
     public User(String firstName, String lastName, String email, String password, String coordinates) {
         this.firstName = firstName;
@@ -35,6 +41,48 @@ public class User extends BaseEntity /* implements UserDetails */ {
         this.coordinates = coordinates;
     }
     public User(){}
+
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public List<UserPlace> getUserPlace() {
+        return userPlace;
+    }
+
+    public void setUserPlace(List<UserPlace> userPlace) {
+        this.userPlace = userPlace;
+    }
+
+    public List<UserEvent> getUserEvent() {
+        return userEvent;
+    }
+
+    public void setUserEvent(List<UserEvent> userEvent) {
+        this.userEvent = userEvent;
+    }
+
+    public List<Friend> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<Friend> friends) {
+        this.friends = friends;
+    }
+
 
     @OneToMany(
             mappedBy = "user",
@@ -47,6 +95,9 @@ public class User extends BaseEntity /* implements UserDetails */ {
             cascade = CascadeType.ALL
     )
     private List<UserEvent> userEvent = new ArrayList<>();
+
+    @OneToMany(mappedBy = "firstUser", cascade = CascadeType.ALL)
+    private List<Friend> friends = new ArrayList<>();
 
     public String getFirstName() {
         return firstName;

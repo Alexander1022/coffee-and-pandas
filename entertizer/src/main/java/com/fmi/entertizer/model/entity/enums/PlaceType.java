@@ -2,9 +2,22 @@ package com.fmi.entertizer.model.entity.enums;
 
 
 public enum PlaceType {
-    CINEMA,
-    GYM,
     CASINO,
-    DISCO,
-
+    FOOD,
+    STORE,
+    GYM,
+    CLUB,
+    HOTEL,
+    PLAYGROUND,
+    GALLERY,
+    MUSEUM,
+    EROTIC,
+    BAR,
+    ZOO,
+    CINEMA,
+    PARK,
+    MOUNTAIN,
+    BEACH,
+    SPORT,
+    GAMING
 }

@@ -2,6 +2,7 @@ package com.fmi.entertizer.model.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +14,13 @@ public class Event extends BaseEntity{
 
     @Column
     private String description;
+    @Column(nullable = false)
+    private LocalDate dueDate;
 
-    @Column
-    private String coordinates;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User creator;
+
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "place_id", referencedColumnName = "id")
@@ -27,10 +32,20 @@ public class Event extends BaseEntity{
     )
     private List<UserEvent> eventUser = new ArrayList<>();
 
-    public Event(String name, String description, String coordinates, Place place) {
+    public Event(String name, String description, LocalDate dueDate, User creator, Place place, List<UserEvent> eventUser) {
         this.name = name;
         this.description = description;
-        this.coordinates = coordinates;
+        this.dueDate = dueDate;
+        this.creator = creator;
+        this.place = place;
+        this.eventUser = eventUser;
+    }
+
+    public Event(String name, String description, LocalDate dueDate, User creator, Place place) {
+        this.name = name;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.creator = creator;
         this.place = place;
     }
 
@@ -53,12 +68,20 @@ public class Event extends BaseEntity{
         this.description = description;
     }
 
-    public String getCoordinates() {
-        return coordinates;
+    public LocalDate getDueDate() {
+        return dueDate;
     }
 
-    public void setCoordinates(String coordinates) {
-        this.coordinates = coordinates;
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public List<UserEvent> getEventUser() {
+        return eventUser;
+    }
+
+    public void setEventUser(List<UserEvent> eventUser) {
+        this.eventUser = eventUser;
     }
 
     public Place getPlace() {
