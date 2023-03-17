@@ -27,6 +27,14 @@ public class User extends BaseEntity /* implements UserDetails */ {
     @Column(nullable = false)
     private String coordinates;
 
+    public User(String firstName, String lastName, String email, String password, String coordinates) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.coordinates = coordinates;
+    }
+    public User(){}
 
     public String getFirstName() {
         return firstName;
