@@ -1,4 +1,4 @@
 package com.fmi.entertizer.service;
 
-public class EventService {
+public interface EventService {
 }

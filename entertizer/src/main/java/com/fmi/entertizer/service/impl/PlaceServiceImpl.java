@@ -1,4 +1,6 @@
 package com.fmi.entertizer.service.impl;
 
-public class PlaceServiceImpl {
+import com.fmi.entertizer.service.PlaceService;
+
+public class PlaceServiceImpl implements PlaceService {
 }
