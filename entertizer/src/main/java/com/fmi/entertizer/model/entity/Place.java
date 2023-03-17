@@ -17,6 +17,9 @@ public class Place extends BaseEntity{
     @Column
     private String description;
 
+    @Column
+    private String name;
+
     @Column(nullable = false)
     private String coordinates;
 
@@ -36,6 +39,30 @@ public class Place extends BaseEntity{
     }
 
     public Place() {
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public List<UserPlace> getPlaceUser() {
+        return placeUser;
+    }
+
+    public void setPlaceUser(List<UserPlace> placeUser) {
+        this.placeUser = placeUser;
     }
 
     public PlaceType getType() {

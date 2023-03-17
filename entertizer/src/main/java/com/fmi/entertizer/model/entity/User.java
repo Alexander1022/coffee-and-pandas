@@ -3,13 +3,14 @@ package com.fmi.entertizer.model.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User extends BaseEntity /* implements UserDetails */ {
+public class User extends BaseEntity {
     @Column(nullable = false)
     private String firstName;
 
@@ -19,9 +20,6 @@ public class User extends BaseEntity /* implements UserDetails */ {
     @Column(nullable = false, unique = true, updatable = true)
     @Email
     private String email;
-
-    @Column(nullable = false, unique = true)
-    private String username;
 
     @Column(nullable = false, updatable = true)
     @Length(min = 3, message = "Password must be at least 3 characters.")
@@ -43,13 +41,6 @@ public class User extends BaseEntity /* implements UserDetails */ {
     public User(){}
 
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public Event getEvent() {
         return event;

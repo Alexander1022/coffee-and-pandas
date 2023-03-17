@@ -12,9 +12,6 @@ public class UserRegistrationDTO {
     @NotBlank(message = "Last name is required")
     private String lastName;
 
-    @NotBlank(message = "Username is required")
-    private String username;
-
     @NotNull
     @Email(message = "Email must be valid")
     private String email;
@@ -22,6 +19,14 @@ public class UserRegistrationDTO {
     @NotNull
     @Length(min = 3, max = 25, message = "Password must be between 3 and 25 least 3 characters.")
     private String password;
+
+    public UserRegistrationDTO(String firstName, String lastName, String email, String password, String confirmPassword) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
 
     @NotNull
     @Length(min = 3, max = 25,  message = "Password must be between 3 and 25  characters.")

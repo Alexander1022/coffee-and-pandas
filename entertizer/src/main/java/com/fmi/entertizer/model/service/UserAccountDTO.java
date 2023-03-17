@@ -2,27 +2,18 @@ package com.fmi.entertizer.model.service;
 
 public class UserAccountDTO {
     private String email;
-    private String username;
     private String firstName;
     private String lastName;
 
     public UserAccountDTO() {
     }
 
-    public UserAccountDTO(String email, String username, String firstName, String lastName) {
+    public UserAccountDTO(String email, String firstName, String lastName) {
         this.email = email;
-        this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public String getEmail() {
         return email;
