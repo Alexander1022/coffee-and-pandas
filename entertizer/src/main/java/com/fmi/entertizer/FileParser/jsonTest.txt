@@ -1,0 +1,1127 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Магазинъ 345",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1421",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "Biser",
+        "housenumber": "2",
+        "lon": 23.3235653,
+        "lat": 42.6823348,
+        "formatted": "Магазинъ 345, Biser 2, ж.к. Лозенец, 1421 Sofia, Bulgaria",
+        "address_line1": "Магазинъ 345",
+        "address_line2": "Biser 2, ж.к. Лозенец, 1421 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Магазинъ 345",
+            "shop": "supermarket",
+            "osm_id": 2179884068,
+            "website": "https://magazin345.bg/",
+            "alt_name": "Магазин 345",
+            "osm_type": "n",
+            "short_name": 345,
+            "addr:street": "Бисер",
+            "opening_hours": "24/7",
+            "addr:housenumber": 2
+          }
+        },
+        "place_id": "51d39eed2cd55237405949972abf56574540f00103f9012464ee8100000000920314d09cd0b0d0b3d0b0d0b7d0b8d0bdd18a20333435"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.323565299999995,
+          42.682334800526014
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Дар",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1160",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "Milin Kamak",
+        "housenumber": "14",
+        "lon": 23.3279346,
+        "lat": 42.6821002,
+        "formatted": "Dar, Milin Kamak 14, ж.к. Лозенец, 1160 Sofia, Bulgaria",
+        "address_line1": "Dar",
+        "address_line2": "Milin Kamak 14, ж.к. Лозенец, 1160 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details",
+          "details.contact",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Дар",
+            "shop": "supermarket",
+            "brand": "Дар",
+            "phone": "+359 2 996 3061",
+            "osm_id": 2791553927,
+            "name:en": "Dar",
+            "website": "http://www.piccadilly.bg/",
+            "osm_type": "n",
+            "wheelchair": "yes",
+            "addr:street": "Милин камък",
+            "opening_hours": "07:00-22:00",
+            "brand:wikidata": "Q114053570",
+            "addr:housenumber": 14
+          }
+        },
+        "place_id": "51123a9e85f35337405959ed320f4f574540f00103f90187bb63a600000000920306d094d0b0d180"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.3279346,
+          42.682100200526015
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "S_mart",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1421",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "Krum Popov",
+        "housenumber": "64",
+        "lon": 23.3245127,
+        "lat": 42.679654,
+        "formatted": "S_mart, Krum Popov 64, ж.к. Лозенец, 1421 Sofia, Bulgaria",
+        "address_line1": "S_mart",
+        "address_line2": "Krum Popov 64, ж.к. Лозенец, 1421 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "S_mart",
+            "shop": "supermarket",
+            "osm_id": 4740618698,
+            "osm_type": "n",
+            "addr:city": "София",
+            "addr:street": "Крум Попов",
+            "addr:postcode": 1421,
+            "opening_hours": "24/7",
+            "addr:housenumber": 64
+          }
+        },
+        "place_id": "51fca2a9431353374059586dfce6fe564540f00103f901ca19901a01000000920306535f6d617274"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.3245127,
+          42.679654000525886
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Магазинъ 345",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1164",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "pl. Velchova zavera",
+        "housenumber": "1",
+        "lon": 23.3336083,
+        "lat": 42.6770528,
+        "formatted": "Магазинъ 345, pl. Velchova zavera 1, ж.к. Лозенец, 1164 Sofia, Bulgaria",
+        "address_line1": "Магазинъ 345",
+        "address_line2": "pl. Velchova zavera 1, ж.к. Лозенец, 1164 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Магазинъ 345",
+            "shop": "supermarket",
+            "osm_id": 3688615499,
+            "website": "https://magazin345.bg/",
+            "alt_name": "Магазин 345",
+            "osm_type": "n",
+            "addr:city": "София",
+            "short_name": 345,
+            "addr:street": "пл. Велчова завера",
+            "opening_hours": "24/7",
+            "addr:housenumber": 1
+          }
+        },
+        "place_id": "51962c825a675537405937f689aaa9564540f00103f9014bcedbdb00000000920314d09cd0b0d0b3d0b0d0b7d0b8d0bdd18a20333435"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.3336083,
+          42.67705280052581
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Мини Маркет",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1421",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "bul. Cherni vrah",
+        "housenumber": "16",
+        "lon": 23.3212904,
+        "lat": 42.6757562,
+        "formatted": "Мини Маркет, bul. Cherni vrah 16, ж.к. Лозенец, 1421 Sofia, Bulgaria",
+        "address_line1": "Мини Маркет",
+        "address_line2": "bul. Cherni vrah 16, ж.к. Лозенец, 1421 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Мини Маркет",
+            "shop": "supermarket",
+            "osm_id": 6819375748,
+            "osm_type": "n",
+            "addr:city": "София",
+            "addr:street": "бул. Черни връх",
+            "opening_hours": "Mo-Su 08:00-22:00",
+            "addr:housenumber": 16,
+            "check_date:opening_hours": "2021-09-01"
+          }
+        },
+        "place_id": "51cc8470164052374059e5a9de2d7f564540f00103f901846a779601000000920315d09cd0b8d0bdd0b820d09cd0b0d180d0bad0b5d182"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.321290399999995,
+          42.67575620052575
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Фантастико",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1421",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "bul. Cherni vrah",
+        "housenumber": "20",
+        "lon": 23.3213195,
+        "lat": 42.6747121,
+        "formatted": "Фантастико, bul. Cherni vrah 20, ж.к. Лозенец, 1421 Sofia, Bulgaria",
+        "address_line1": "Фантастико",
+        "address_line2": "bul. Cherni vrah 20, ж.к. Лозенец, 1421 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "ref": 8,
+            "name": "Фантастико",
+            "shop": "supermarket",
+            "brand": "Фантастико",
+            "branch": "ж.к. „Лозенец“",
+            "osm_id": 5163029522,
+            "website": "https://www.fantastico.bg",
+            "int_name": "Fantastico",
+            "osm_type": "n",
+            "addr:city": "София",
+            "addr:street": "бул. Черни връх",
+            "addr:postcode": 1421,
+            "opening_hours": "PH,Mo-Su 07:30-22:00",
+            "brand:wikidata": "Q61140834",
+            "addr:housenumber": 20
+          }
+        },
+        "place_id": "512b11a8fe415237405995fc52f75c564540f00103f9011294bd3301000000920314d0a4d0b0d0bdd182d0b0d181d182d0b8d0bad0be"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.321319499999998,
+          42.67471210052569
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Accent Supermarket",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1421",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "Sveti Sedmochislenitsi",
+        "housenumber": "11",
+        "lon": 23.3227433,
+        "lat": 42.6742897,
+        "formatted": "Accent Supermarket, Sveti Sedmochislenitsi 11, ж.к. Лозенец, 1421 Sofia, Bulgaria",
+        "address_line1": "Accent Supermarket",
+        "address_line2": "Sveti Sedmochislenitsi 11, ж.к. Лозенец, 1421 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Accent Supermarket",
+            "shop": "supermarket",
+            "osm_id": 6554762225,
+            "osm_type": "n",
+            "addr:city": "София",
+            "addr:street": "Свети Седмочисленици",
+            "opening_hours": "PH,Mo-Su 08:00-22:00",
+            "addr:housenumber": 11,
+            "check_date:opening_hours": "2021-11-14"
+          }
+        },
+        "place_id": "51cb800e4e9f52374059cbe4f91f4f564540f00103f901f1bbb18601000000920312416363656e742053757065726d61726b6574"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.322743299999996,
+          42.674289700525684
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Billa",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1164",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "Zlatovrah",
+        "lon": 23.3332345,
+        "lat": 42.6737418,
+        "formatted": "Billa, Zlatovrah, ж.к. Лозенец, 1164 Sofia, Bulgaria",
+        "address_line1": "Billa",
+        "address_line2": "Zlatovrah, ж.к. Лозенец, 1164 Sofia, Bulgaria",
+        "categories": [
+          "Zoo",
+          "commercial.supermarket",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details",
+          "details.contact",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Billa",
+            "shop": "supermarket",
+            "brand": "Billa",
+            "osm_id": 3651425760,
+            "name:bg": "Билла",
+            "website": "https://www.billa.bg/",
+            "osm_type": "n",
+            "addr:city": "София",
+            "wheelchair": "yes",
+            "addr:postcode": 1164,
+            "contact:phone": "+359 2 904 8140",
+            "opening_hours": "Mo-Su 07:30-22:00",
+            "brand:wikidata": "Q537781"
+          }
+        },
+        "place_id": "511e662fdb4e553740595b9adb2b3d564540f00103f901e055a4d90000000092030542696c6c61"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.333234499999996,
+          42.67374180052567
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "СВА",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1409",
+        "district": "Lozenets",
+        "suburb": "ж.г. Южен парк",
+        "street": "bul. Arsenalski",
+        "housenumber": "105",
+        "lon": 23.3112557,
+        "lat": 42.6732557,
+        "formatted": "СВА, bul. Arsenalski 105, ж.г. Южен парк, 1409 Sofia, Bulgaria",
+        "address_line1": "СВА",
+        "address_line2": "bul. Arsenalski 105, ж.г. Южен парк, 1409 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "СВА",
+            "shop": "supermarket",
+            "osm_id": 6263766011,
+            "osm_type": "n",
+            "opening_hours": "Mo-Su,PH 08:00-22:00",
+            "check_date:opening_hours": "2021-10-31"
+          }
+        },
+        "place_id": "518f311c74ae4f37405935cd273e2d564540f00103f901fb7b597501000000920306d0a1d092d090"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.3112557,
+          42.67325570052564
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Дар",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1164",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "Zlatovrah",
+        "housenumber": "38",
+        "lon": 23.3329595,
+        "lat": 42.6720043,
+        "formatted": "Дар, Zlatovrah 38, ж.к. Лозенец, 1164 Sofia, Bulgaria",
+        "address_line1": "Дар",
+        "address_line2": "Zlatovrah 38, ж.к. Лозенец, 1164 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details",
+          "details.facilities",
+          "details.payment"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Дар",
+            "shop": "supermarket",
+            "osm_id": 5628559869,
+            "osm_type": "n",
+            "addr:city": "София",
+            "wheelchair": "yes",
+            "addr:street": "Златовръх",
+            "payment:cash": "yes",
+            "addr:postcode": 1164,
+            "opening_hours": "Mo-Su 07:30-22:00",
+            "addr:housenumber": 38,
+            "payment:debit_cards": "yes",
+            "check_date:opening_hours": "2022-05-03"
+          }
+        },
+        "place_id": "517c6473d53c55374059aec3a63c04564540f00103f901fd017d4f01000000920306d094d0b0d180"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.3329595,
+          42.672004300525586
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "ЦБА",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1407",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "Plachkovitsa",
+        "housenumber": "2",
+        "lon": 23.326274,
+        "lat": 42.671858,
+        "formatted": "ЦБА, Plachkovitsa 2, ж.к. Лозенец, 1407 Sofia, Bulgaria",
+        "address_line1": "ЦБА",
+        "address_line2": "Plachkovitsa 2, ж.к. Лозенец, 1407 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details",
+          "details.facilities",
+          "details.payment"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "ЦБА",
+            "shop": "supermarket",
+            "osm_id": 3064029260,
+            "website": "https://www.cba.bg/",
+            "osm_type": "n",
+            "addr:city": "София",
+            "wheelchair": "yes",
+            "addr:street": "Плачковица",
+            "payment:cash": "yes",
+            "addr:postcode": 1407,
+            "opening_hours": "Mo-Su 08:00-22:00",
+            "addr:housenumber": 2,
+            "payment:debit_cards": "yes",
+            "check_date:opening_hours": "2022-10-25"
+          }
+        },
+        "place_id": "51fd885fb186533740591be86571ff554540f00103f9014c60a1b600000000920306d0a6d091d090"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.326274,
+          42.67185800052558
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Мандарин",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1407",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "bul. James Bourchier",
+        "housenumber": "75",
+        "lon": 23.3173889,
+        "lat": 42.6710596,
+        "formatted": "Мандарин, bul. James Bourchier 75, ж.к. Лозенец, 1407 Sofia, Bulgaria",
+        "address_line1": "Мандарин",
+        "address_line2": "bul. James Bourchier 75, ж.к. Лозенец, 1407 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket"
+        ],
+        "details": [
+          "details",
+          "details.contact"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Мандарин",
+            "shop": "supermarket",
+            "phone": "+359 2 962 2280",
+            "osm_id": 3008326906,
+            "website": "http://www.mandarinsupermarkets.com/",
+            "osm_type": "n",
+            "addr:city": "София",
+            "addr:street": "бул. Джеймс Баучер",
+            "addr:postcode": 1407,
+            "opening_hours": "24/7",
+            "addr:housenumber": 75
+          }
+        },
+        "place_id": "51099d2166405137405947f6ee47e5554540f00103f901fa6c4fb300000000920310d09cd0b0d0bdd0b4d0b0d180d0b8d0bd"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.3173889,
+          42.671059600525545
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "АБ Маркет",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1407",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "Plachkovitsa",
+        "housenumber": "6",
+        "lon": 23.3262362,
+        "lat": 42.670917,
+        "formatted": "AB Market, Plachkovitsa 6, ж.к. Лозенец, 1407 Sofia, Bulgaria",
+        "address_line1": "AB Market",
+        "address_line2": "Plachkovitsa 6, ж.к. Лозенец, 1407 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "АБ Маркет",
+            "shop": "supermarket",
+            "osm_id": 4885010602,
+            "name:en": "AB Market",
+            "osm_type": "n",
+            "addr:city": "София",
+            "wheelchair": "yes",
+            "addr:street": "Плачковица",
+            "description": "Денонощен супермаркет",
+            "addr:postcode": 1407,
+            "opening_hours": "24/7",
+            "addr:housenumber": 6
+          }
+        },
+        "place_id": "5174c53137845337405937cbb79be0554540f00103f901aa582b2301000000920311d090d09120d09cd0b0d180d0bad0b5d182"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.326236199999997,
+          42.67091700052554
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Буров",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1416",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "Persenk",
+        "housenumber": "20B",
+        "lon": 23.325291,
+        "lat": 42.6699885,
+        "formatted": "Буров, Persenk 20B, ж.к. Лозенец, 1416 Sofia, Bulgaria",
+        "address_line1": "Буров",
+        "address_line2": "Persenk 20B, ж.к. Лозенец, 1416 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Буров",
+            "shop": "supermarket",
+            "osm_id": 3646716159,
+            "operator": "Супермаркети Буров",
+            "osm_type": "n",
+            "wheelchair": "yes",
+            "opening_hours": "Mo-Su 08:00-21:00",
+            "check_date:opening_hours": "2022-04-28"
+          }
+        },
+        "place_id": "51e2ae5e454653374059ff39e52ec2554540f00103f901ff785cd90000000092030ad091d183d180d0bed0b2"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.325291,
+          42.6699885005255
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Т-Маркет",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1416",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "Persenk",
+        "housenumber": "22 бл.34",
+        "lon": 23.3233538,
+        "lat": 42.6694425,
+        "formatted": "T-Market, Persenk 22 бл.34, ж.к. Лозенец, 1416 Sofia, Bulgaria",
+        "address_line1": "T-Market",
+        "address_line2": "Persenk 22 бл.34, ж.к. Лозенец, 1416 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket"
+        ],
+        "details": [
+          "details",
+          "details.contact"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Т-Маркет",
+            "shop": "supermarket",
+            "brand": "Т-Маркет",
+            "osm_id": 2186786962,
+            "name:en": "T-Market",
+            "website": "http://www.tmarket.bg/",
+            "int_name": "T-Market",
+            "osm_type": "n",
+            "addr:city": "София",
+            "addr:place": "ж.к. Лозенец",
+            "addr:street": "Персенк",
+            "contact:phone": "+359 2 868 1317",
+            "opening_hours": "PH,Mo-Su 08:00-22:00",
+            "brand:wikidata": "Q64033983",
+            "addr:housenumber": "22 бл.34",
+            "check_date:opening_hours": "2021-11-06"
+          }
+        },
+        "place_id": "518e098c50c7523740599927b74ab0554540f00103f90192b857820000000092030fd0a22dd09cd0b0d180d0bad0b5d182"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.3233538,
+          42.66944250052547
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "CBA",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1407",
+        "district": "Lozenets",
+        "suburb": "ж.к. Лозенец",
+        "street": "bul. Cherni vrah",
+        "housenumber": "39",
+        "lon": 23.3195426,
+        "lat": 42.6681338,
+        "formatted": "CBA, bul. Cherni vrah 39, ж.к. Лозенец, 1407 Sofia, Bulgaria",
+        "address_line1": "CBA",
+        "address_line2": "bul. Cherni vrah 39, ж.к. Лозенец, 1407 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "CBA",
+            "shop": "supermarket",
+            "brand": "CBA",
+            "osm_id": 6416381040,
+            "osm_type": "n",
+            "addr:city": "София",
+            "addr:street": "бул. Черни връх",
+            "addr:postcode": 1407,
+            "opening_hours": "Mo-Su,PH 08:00-22:00",
+            "brand:wikidata": "Q779845",
+            "addr:housenumber": 39,
+            "check_date:opening_hours": "2021-08-09"
+          }
+        },
+        "place_id": "51c6ad388bcd51374059ef4d8b6885554540f00103f9017034727e01000000920303434241"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.3195426,
+          42.66813380052542
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Берёзка",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1407",
+        "district": "Lozenets",
+        "suburb": "кв. Хладилника",
+        "street": "bul. Cherni vrah",
+        "housenumber": "46",
+        "lon": 23.317136,
+        "lat": 42.6640686,
+        "formatted": "Берёзка, bul. Cherni vrah 46, кв. Хладилника, 1407 Sofia, Bulgaria",
+        "address_line1": "Берёзка",
+        "address_line2": "bul. Cherni vrah 46, кв. Хладилника, 1407 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket"
+        ],
+        "details": [
+          "details",
+          "details.contact"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Берёзка",
+            "shop": "supermarket",
+            "phone": "+359 883233040",
+            "osm_id": 3867826713,
+            "name:bg": "Берьозка",
+            "website": "http://berezka.bg/",
+            "int_name": "Beryozka",
+            "osm_type": "n",
+            "addr:city": "София",
+            "check_date": "2022-11-29",
+            "addr:street": "бул. Черни връх",
+            "opening_hours": "Mo-Fr 09:00-21:00; Sa-Su 10:00-20:00",
+            "addr:housenumber": 46,
+            "check_date:opening_hours": "2022-11-29"
+          }
+        },
+        "place_id": "515e622cd32f513740593ac72c3300554540f00103f901195a8ae60000000092030ed091d0b5d180d191d0b7d0bad0b0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.317135999999998,
+          42.664068600525255
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Lidl",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1407",
+        "district": "Lozenets",
+        "suburb": "кв. Хладилника",
+        "street": "bul. Cherni vrah",
+        "lon": 23.3177837,
+        "lat": 42.6626041,
+        "formatted": "Lidl, bul. Cherni vrah, кв. Хладилника, 1407 Sofia, Bulgaria",
+        "address_line1": "Lidl",
+        "address_line2": "bul. Cherni vrah, кв. Хладилника, 1407 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket",
+          "wheelchair",
+          "wheelchair.yes"
+        ],
+        "details": [
+          "details",
+          "details.facilities"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Lidl",
+            "shop": "supermarket",
+            "brand": "Lidl",
+            "osm_id": 2325107554,
+            "name:bg": "Лидл",
+            "name:fa": "لیدل",
+            "website": "https://www.lidl.bg/",
+            "osm_type": "n",
+            "wheelchair": "yes",
+            "opening_hours": "Mo-Sa 07:30-22:00; Su 08:30-21:30",
+            "brand:wikidata": "Q108169047"
+          }
+        },
+        "place_id": "51adb3c6455a51374059c0f90e36d0544540f00103f9016253968a000000009203044c69646c"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.317783699999996,
+          42.662604100525186
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Дар",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1407",
+        "district": "Lozenets",
+        "suburb": "кв. Хладилника",
+        "street": "Kozyak",
+        "housenumber": "21А",
+        "lon": 23.313628,
+        "lat": 42.661408,
+        "formatted": "Дар, Kozyak 21А, кв. Хладилника, 1407 Sofia, Bulgaria",
+        "address_line1": "Дар",
+        "address_line2": "Kozyak 21А, кв. Хладилника, 1407 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Дар",
+            "shop": "supermarket",
+            "osm_id": 5484078363,
+            "osm_type": "n",
+            "opening_hours": "Mo-Su,PH 07:00-22:00"
+          }
+        },
+        "place_id": "51221cb3ec4950374059bcc87104a9544540f00103f9011b65e04601000000920306d094d0b0d180"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.313628,
+          42.66140800052514
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "Витоша",
+        "country": "Bulgaria",
+        "country_code": "bg",
+        "county": "Sofia-City",
+        "city": "Sofia",
+        "municipality": "Sofia City",
+        "postcode": "1734",
+        "district": "Lozenets",
+        "suburb": "kv. Vitosha",
+        "street": "Angel Karaliychev",
+        "housenumber": "29",
+        "lon": 23.3334508,
+        "lat": 42.6480284,
+        "formatted": "Витоша, Angel Karaliychev 29, kv. Vitosha, 1734 Sofia, Bulgaria",
+        "address_line1": "Витоша",
+        "address_line2": "Angel Karaliychev 29, kv. Vitosha, 1734 Sofia, Bulgaria",
+        "categories": [
+          "commercial",
+          "commercial.supermarket"
+        ],
+        "details": [
+          "details"
+        ],
+        "datasource": {
+          "sourcename": "openstreetmap",
+          "attribution": "© OpenStreetMap contributors",
+          "license": "Open Database Licence",
+          "url": "https://www.openstreetmap.org/copyright",
+          "raw": {
+            "name": "Витоша",
+            "shop": "supermarket",
+            "osm_id": 2136603960,
+            "osm_type": "n",
+            "opening_hours": "Mo-Su 07:00-22:00"
+          }
+        },
+        "place_id": "5136d318085d55374059eb903998f2524540f00103f90138fd597f0000000092030cd092d0b8d182d0bed188d0b0"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.3334508,
+          42.64802840052456
+        ]
+      }
+    }
+  ]
+}

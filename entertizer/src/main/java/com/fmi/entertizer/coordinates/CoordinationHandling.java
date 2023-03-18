@@ -9,12 +9,8 @@ import java.util.regex.Pattern;
 
 public class CoordinationHandling {
     public static final double EARTH_RADIUS = 6371;
-    private double fi_1;
-    private double fi_2;
-    private  double fi;
-    private double lambda;
     private Coordinates startingPoint;
-    //private static CoordinateList coordinateList;
+    private PointList pointList;
     public static void main(String[] args) {
         //Coordinates coordinates = new Coordinates("49°30'60 N, 123°30'03 W");
         //Coordinates coordinates = new Coordinates("49°30'60 N");
@@ -39,133 +35,7 @@ public class CoordinationHandling {
 
     }
 }
-class Point
-{
-    private Coordinates lat;
-    private Coordinates lon;
-    public Point(Coordinates lat,Coordinates lon)
-    {
-        this.lat = lat;
-        this.lon = lon;
-    }
-    public Point(String input)
-    {
-        String inputCoords [] = input.split(", ");
-        if(inputCoords.length!=2)
-            return; // raise exception
-        this.lat = new Coordinates(inputCoords[0]);
-        this.lon = new Coordinates(inputCoords[1]);
 
-    }
-
-    public void print()
-    {
-
-        lat.printDD();
-        lon.printDD();
-    }
-    public Coordinates getLat()
-    {
-        return lat;
-    }
-    public Coordinates getLon()
-    {
-        return lon;
-    }
-    public double distance(Point other)
-    {
-        double d,a,c;
-        double phi_1 = Math.toRadians(this.lat.getDecDegree());
-        double phi_2 = Math.toRadians(other.lat.getDecDegree());
-        double delta_phi = Math.toRadians(other.lat.getDecDegree() - this.lat.getDecDegree());
-        double delta_lambda = Math.toRadians(other.lon.getDecDegree() - this.lon.getDecDegree());
-
-        a = Math.sin(delta_phi/2)*Math.sin(delta_phi/2) +
-            Math.cos(phi_1) * Math.cos(phi_2) *
-            Math.sin(delta_lambda/2)*Math.sin(delta_lambda/2);
-        c = 2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
-        d = CoordinationHandling.EARTH_RADIUS* c;
-        return  d;
-    }
-}
-class PointList
-{
-    private Point currentPos;
-    private ArrayList<Point> pointLists;
-    private TreeMap<Double,Point> savedSearch;
-    public PointList(Point currentPos,String input)
-    {
-        setCurrentPos(currentPos);
-        pointLists = new ArrayList<>();
-        parseInput(input);
-        sortPointLists();
-        printSavedSearch();
-    }
-    public PointList(String currentPosInput,String input)
-    {
-        setCurrentPos(new Point(currentPosInput));
-        pointLists = new ArrayList<>();
-        parseInput(input);
-        sortPointLists();
-        printSavedSearch();
-    }
-    public void sortPointLists()
-    {
-        if(savedSearch.isEmpty())
-            for(Point p:pointLists)
-                savedSearch.put(currentPos.distance(p),p);
-
-    }
-    public Point getCurrentPos()
-    {
-        return currentPos;
-    }
-    public void setCurrentPos(Point p)
-    {
-        savedSearch = new TreeMap<>();
-        currentPos = p;
-    }
-    public void setCurrentPos(Coordinates lat,Coordinates lon)
-    {
-        currentPos = new Point(lat, lon);
-    }
-    public ArrayList<Point> getPointLists()
-    {
-        return this.pointLists;
-    }
-    public TreeMap<Double,Point> getSavedSearch()
-    {
-        return savedSearch;
-    }
-    public void printSavedSearch()
-    {
-        for(Map.Entry<Double,Point> entry:savedSearch.entrySet())
-        {
-            //System.out.println(entry.getKey() + " " + entry.getValue().print());
-            System.out.println(entry.getKey() + " ");  entry.getValue().print();
-        }
-    }
-    public void printCoordinates()
-    {
-        for(Point p:pointLists)
-        {
-            p.getLat().printDD();
-            p.getLon().printDD();
-        }
-    }
-    private void parseInput(String input)
-    {
-        String inputCoords [] = input.split(", ");
-        for(int i=0;i<inputCoords.length;i+=2)
-        {
-            Coordinates coordinateLat = new Coordinates(inputCoords[i]);
-            Coordinates coordinatesLon = new Coordinates(inputCoords[i+1]);
-            Point point = new Point(coordinateLat,coordinatesLon);
-            this.pointLists.add(point);
-        }
-    }
-
-}
 class Coordinates
 {
 
@@ -178,26 +48,26 @@ class Coordinates
         setDegree(degree);
         setHours(hours);
         setMinutes(minutes);
-        System.out.print(DMSToDD(degree,hours,minutes));
+        System.out.print(printDMS());
     }
     public Coordinates(String coordinates)
     {
         parseCoordinates(coordinates);
-        printDMS();
-        printDD();
+        System.out.print(printDMS());
+        System.out.print(printDD());
     }
     public double getDecDegree()
     {
         return this.decDegree;
     }
 
-    public void printDMS()
+    public String printDMS()
     {
-        System.out.printf("DMS : %d°%d'%d\"\n",degree,hours,minutes);
+        return String.format("DMS : %d°%d'%d\"\n",degree,hours,minutes);
     }
-    public void printDD()
+    public String printDD()
     {
-        System.out.printf("DD : %.5f\n",decDegree);
+        return String.format("DD : %.5f\n",decDegree);
     }
     public int getDegree()
     {
