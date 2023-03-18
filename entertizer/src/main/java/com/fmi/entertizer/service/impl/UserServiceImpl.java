@@ -14,6 +14,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.lang.constant.Constable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -22,12 +23,10 @@ import java.util.stream.IntStream;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -43,7 +42,6 @@ public class UserServiceImpl implements UserService {
         throwExceptionIfUserExist(userServiceModel.getEmail());
 
         User user = this.modelMapper.map(userServiceModel, User.class);
-        user.setPassword(bCryptPasswordEncoder.encode(userServiceModel.getPassword()));
 
         User user1 = this.userRepository.save(user);
         return this.modelMapper.map(user1, UserDTO.class);
@@ -54,10 +52,13 @@ public class UserServiceImpl implements UserService {
     public String loginUser(UserDTO userDTO){
         User user = this.userRepository.findFirstByEmail(userDTO.getEmail()).orElse(null);
         if (user == null) throw new UserNotFoundException("No such user.");
-        if(!bCryptPasswordEncoder.matches(userDTO.getPassword(), user.getPassword())){
+        List<User> allUsers = new ArrayList<>();
+        this.userRepository.findAll().forEach(allUsers::add);
+        User user1 = allUsers.stream().filter(u-> u.getPassword().equals(userDTO.getPassword())).findFirst().orElse(null);
+        if(user1 == null){
             return "Wrong password";
         }
-        return "Success";
+        return user1.getId().toString();
     }
 
     @Override
@@ -65,6 +66,10 @@ public class UserServiceImpl implements UserService {
         User user = this.userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with given id was not found !"));
 
         return this.modelMapper.map(user, UserDTO.class);
+    }
+
+    public Long getUserIdByPasswordHash(UserDTO user){
+        return this.userRepository.findByPassword(user.getPassword()).get().getId();
     }
 
     @Override
@@ -161,7 +166,8 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public List<UserDTO> searchResults(String search){
-        List<User> allUsers = this.userRepository.getAll().stream().toList();
+        List<User> allUsers = new ArrayList<>();
+        this.userRepository.findAll().forEach(allUsers::add);
         List<UserDTO> searchResults = new ArrayList<>();
         allUsers.forEach(u -> {
             if(u.getFirstName().contains(search) || u.getLastName().contains(search)){
