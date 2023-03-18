@@ -21,7 +21,7 @@ public interface UserService {
     public List<UserDTO> getUserFriends(UserDTO userDTO);
 
 
-    UserDTO addFriend(UserDTO userDTO, UserDTO userFriend);
+    public UserDTO addFriend(Long userId1, Long userId2);
 
     List<UserDTO> friendRequests(UserDTO userDTO);
 
