@@ -7,7 +7,18 @@ import java.util.List;
 
 public interface UserService {
     public List<UserDTO> getAllUsers();
+    public UserDTO registerNewUser(UserDTO userServiceModel);
+
+    UserDTO findById(Long id);
+
+    UserDTO findByEmail(String email);
+
+    UserDTO findByCoordinates(String coordinates);
 
     public List<UserDTO> getUserFriends(UserDTO userDTO);
 
+
+    UserDTO addFriend(UserDTO userDTO, UserDTO userFriend);
+
+    UserDTO removeFriend(UserDTO userDTO, UserDTO userFriend);
 }
