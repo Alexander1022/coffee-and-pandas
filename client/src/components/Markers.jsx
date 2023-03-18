@@ -21,6 +21,7 @@ const Markers = ({ onMarkerSelect }) => {
 
     L.Marker.prototype.options.icon = DefaultIcon;
 
+    document.getElementsByClassName("leaflet-control-zoom")[0].style.left = "12rem";
 
     const { legend, setSelected } = useLegend()
     const { places } = usePlaces();
@@ -39,12 +40,30 @@ const Markers = ({ onMarkerSelect }) => {
                     })
                 })
             }
-            <div style={{ position: 'absolute', display: 'flex', flexDirection: 'column', width: '100px', height: 'fit-content', zIndex: 999, top: '100px', left: '0px', backgroundColor: 'white' }}>
-                {
-                    legend.map((item) => {
-                        return <Checkbox key={item.name} label={item.name} checked={item.selected} onChange={() => setSelected(item.name, !item.selected)}></Checkbox>
-                    })
-                }
+            <div style={{ position: 'absolute', display: 'flex', flexDirection: 'column', width: '12rem', height: '100%', zIndex: 999, backgroundColor: '#f39c12', opacity: '0.9' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', borderBottom: '1px dashed black', padding: '0.5rem', margin: '0.5rem' }}>
+                    <h1 style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>Enter Exploring</h1>
+                    <p style={{ fontSize: '0.75rem' }}> Discover the best entertainment venues in your area with our interactive map!</p>
+                </div>
+                <div className='justify-center text-center flex flex-col align-center'>
+                    <label style={{ fontSize: '1.3rem', marginBottom: '0.2rem', fontWeight: 'bold' }}>Destinations</label>
+                    {
+                        legend.map((item) => {
+                            return (
+                                <div key={item.name} style = {{ display: 'flex' , justifyContent: 'flex-start' , gap: '2' , width: '25px', marginLeft: '1rem'}}>
+                                    {item.img}
+                                    <Checkbox
+                                        label={item.name}
+                                        checked={item.selected}
+                                        onChange={() => setSelected(item.name, !item.selected)}>
+
+                                    </Checkbox>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+
             </div>
 
         </div>
