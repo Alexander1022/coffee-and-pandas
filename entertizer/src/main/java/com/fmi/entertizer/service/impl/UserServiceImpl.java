@@ -118,8 +118,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO removeFriend(UserDTO userDTO, UserDTO userFriend) {
-        User user = this.userRepository.findFirstById(userDTO.getId()).orElse(null);
+    public UserDTO removeFriend(Long userId, Long userFriendId) {
+        User user = this.userRepository.findFirstById(userId).orElse(null);
+        User userFriend = this.userRepository.findFirstById(userFriendId).orElse(null);
         if (user==null) return null;
         int friendIndex = IntStream.range(0, user.getFriends().size())
                 .filter(i -> user.getFriends().get(i).getSecondUser().getEmail().equals(userFriend.getEmail()))
@@ -127,7 +128,7 @@ public class UserServiceImpl implements UserService {
                 .orElse(-1);
         user.getFriends().remove(friendIndex);
         this.userRepository.save(user);
-        return userFriend;
+        return modelMapper.map(userFriend, UserDTO.class);
     }
 
     @Override
@@ -154,10 +155,10 @@ public class UserServiceImpl implements UserService {
         return friendRequests;
     }
     @Override
-    public void friendRequestInteraction(UserDTO userSentTo, UserDTO userSentFrom, boolean accepted){
-        User user = this.userRepository.getUserById(userSentTo.getId()).orElse(null);
+    public void friendRequestInteraction(Long userSentTo, Long userSentFrom, boolean accepted){
+        User user = this.userRepository.getUserById(userSentTo).orElse(null);
         if(accepted){
-            user.getFriends().stream().filter(f->f.getId().equals(userSentFrom.getId())).findFirst().get().setStatus(Status.ACCEPTED);
+            user.getFriends().stream().filter(f->f.getId().equals(userSentFrom)).findFirst().get().setStatus(Status.ACCEPTED);
         } else {
             removeFriend(userSentTo, userSentFrom);
         }

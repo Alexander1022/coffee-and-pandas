@@ -27,9 +27,9 @@ public interface UserService {
 
     List<UserDTO> viewFriends(Long id);
 
-    void friendRequestInteraction(UserDTO userSentTo, UserDTO userSentFrom, boolean accepted);
+    void friendRequestInteraction(Long userSentTo, Long userSentFrom, boolean accepted);
 
     List<UserDTO> searchResults(String search);
 
-    UserDTO removeFriend(UserDTO userDTO, UserDTO userFriend);
+    UserDTO removeFriend(Long userId, Long userFriendId);
 }
