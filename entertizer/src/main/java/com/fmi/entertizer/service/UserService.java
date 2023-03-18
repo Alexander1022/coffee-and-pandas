@@ -10,6 +10,8 @@ public interface UserService {
     public UserDTO registerNewUser(UserDTO userServiceModel);
     public void updateUserFirstAndLastNames(UserDTO userDTO, Long id);
 
+    String loginUser(UserDTO userDTO);
+
     UserDTO findById(Long id);
 
     UserDTO findByEmail(String email);

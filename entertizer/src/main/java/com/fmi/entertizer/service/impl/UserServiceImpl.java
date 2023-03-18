@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService {
         return users;
     }
 
+
     @Override
     public UserDTO registerNewUser(UserDTO userServiceModel) {
         throwExceptionIfUserExist(userServiceModel.getEmail());
@@ -48,6 +49,16 @@ public class UserServiceImpl implements UserService {
         return this.modelMapper.map(user1, UserDTO.class);
     }
 
+
+    @Override
+    public String loginUser(UserDTO userDTO){
+        User user = this.userRepository.findFirstByEmail(userDTO.getEmail()).orElse(null);
+        if (user == null) return "No such user";
+        if(!user.getPassword().equals(bCryptPasswordEncoder.encode(userDTO.getPassword()))){
+            return "Wrong password";
+        }
+        return "Success";
+    }
 
     @Override
     public UserDTO findById(Long id) {
