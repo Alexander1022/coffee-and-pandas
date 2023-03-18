@@ -1,8 +1,75 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import UserInterface from '../types/user.type';
+import { register } from '../services/authService';
 
 const SignUp = () => {
+  const [fName, setFName] = useState<string>('');
+  const [lName, setLName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [rPassword, setRPassword] = useState<string>('');
+
+  const [alright, setAlright] = useState<boolean>(false);
+
+  const navigate = useNavigate();
+
+  const initialUser:UserInterface = {
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    password: '',
+  }
+
+  const handleChangeFName = (event:any) => {
+    setFName(event.target.value);
+  };
+
+  const handleChangeLName = (event:any) => {
+    setLName(event.target.value);
+  };
+
+  const handleChangeEmail = (event:any) => {
+    setEmail(event.target.value);
+  };
+
+  const handleChangePassword = (event:any) => {
+    setPassword(event.target.value);
+  };
+
+  const handleChangeRPassword = (event:any) => {
+    setRPassword(event.target.value);
+  };
+
+  const handleSubmit = (event:any) => {
+    event.preventDefault();
+
+    setFName('');
+    setLName('');
+    setEmail('');
+    setPassword('');
+    setRPassword('');
+    
+    if(password !== rPassword) {
+      console.log("Two passwords are note the same!");
+      return;
+    }
+
+    register(fName, lName, email, password).then(
+      (response) => {
+        console.log(response.data);
+        setAlright(true);
+        navigate('/home');  
+      },
+      (error) => {
+        console.log(error);
+        setAlright(false);
+      }
+    );
+
+  };
+
     return (
     <div className="grid grid-cols-2 gap-4 bg-gradient-to-tl from-[#F9AC04] to-[#550E63]">
       <div className="flex flex-col justify-center min-h-screen max-w text-center">
@@ -36,24 +103,23 @@ const SignUp = () => {
           Sign Up
         </h1>
 
-        <section className='flex flex-col content-center justify-center space-y-4 px-24 flex-wrap'>
+        <form className='flex flex-col content-center justify-center space-y-4 px-24 flex-wrap' onSubmit={handleSubmit}>
           <hr className="w-120 h-0.5 border-[#550E63]"/>
-            <input type="name" className="mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="First Name" />
-            <input type="name" className="mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="Last Name" />
-            <input type="email" className="w-full mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="Email" />
-            <input type="password" className="mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="Password" />
-            <input type="password" className="mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="Confirm password" />
+            <input required type="name" value={fName} onChange={handleChangeFName} className="mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="First Name" />
+            <input required type="name" value={lName} onChange={handleChangeLName} className="mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="Last Name" />
+            <input required type="email" value={email} onChange={handleChangeEmail} className="w-full mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="Email" />
+            <input required type="password" minLength={8} value={password} onChange={handleChangePassword} className="mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="Password" />
+            <input required type="password" minLength={8} value={rPassword} onChange={handleChangeRPassword} className="mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="Confirm password" />
             <hr className="w-120 h-0.5 border-[#550E63]"/>
             <div className='flex flex-row justify-center space-x-3'>
-              <input type="checkbox" className='outline-none'/>
+              <input required type="checkbox" className='outline-none'/>
               <label className='text-white text-sm'>I have read and agree with the <Link to="/tos">Terms of service</Link></label>
             </div>
-        </section>
-        <div className=''>
-          <button className='text-xl text-white bg-[#550E63] py-2 px-10 rounded-full mt-2 drop-shadow-lg hover:text-[#550E63] hover:bg-white'>
+
+            <button type="submit" className='text-xl text-white bg-[#550E63] py-2 px-10 rounded-full mt-2 drop-shadow-lgx hover:text-[#550E63] hover:bg-white'>
               Sign Up
           </button>
-        </div>      
+        </form>     
       </div>
     </div>
 );
