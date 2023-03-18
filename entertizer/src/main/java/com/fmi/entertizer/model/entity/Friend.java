@@ -21,6 +21,12 @@ public class Friend extends BaseEntity {
     public Friend() {
     }
 
+    public Friend(User firstUser, User secondUser, Status status) {
+        this.firstUser = firstUser;
+        this.secondUser = secondUser;
+        this.status = status;
+    }
+
     public Status getStatus() {
         return status;
     }
