@@ -5,8 +5,12 @@ import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface FriendRepository extends JpaRepository<Friend, Long> {
     @Transactional
     void deleteByFirstUserIdAndSecondUserId(Long firstId, Long secondId);
+
+    Optional<Friend> findFirstByUserIdAndSecondUserId(Long firstId, Long secondId);
 }

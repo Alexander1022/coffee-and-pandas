@@ -1,6 +1,5 @@
 package com.fmi.entertizer.service;
 
-import com.fmi.entertizer.model.entity.User;
 import com.fmi.entertizer.model.service.FriendDTO;
 import com.fmi.entertizer.model.service.UserDTO;
 
@@ -33,7 +32,7 @@ public interface UserService {
 
     List<UserDTO> searchResults(String search);
 
-    UserDTO removeFriend(Long userId, Long userFriendId);
+    void removeFriend(Long userId, Long userFriendId);
 
 
 

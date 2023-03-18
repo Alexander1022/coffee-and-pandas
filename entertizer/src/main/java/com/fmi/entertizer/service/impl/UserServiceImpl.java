@@ -129,17 +129,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO removeFriend(Long userId, Long userFriendId) {
-        User user = this.userRepository.findFirstById(userId).orElse(null);
-        User userFriend = this.userRepository.findFirstById(userFriendId).orElse(null);
+    public void removeFriend(Long userId, Long userFriendId) {
+//        this.friendRepository.findAll().forEach(f->{
+//            if((f.getFirstUser().getId().equals(userId) && f.getSecondUser().getId().equals(userFriendId)) ||
+//                    (f.getFirstUser().getId().equals(userFriendId) && f.getSecondUser().getId().equals(userId))){
+//                this.friendRepository.delete(f);
 
-        this.friendRepository.findAll().forEach(f->{
-            if((f.getFirstUser().getId().equals(userId) && f.getSecondUser().getId().equals(userFriendId)) ||
-                    (f.getFirstUser().getId().equals(userFriendId) && f.getSecondUser().getId().equals(userId))){
-                this.friendRepository.delete(f);
-            }
-        });
-        return modelMapper.map(userFriend, UserDTO.class);
+        Friend friend = this.friendRepository.findFirstByUserIdAndSecondUserId(userId, userFriendId).orElse(null);
+        this.friendRepository.delete(friend);
+        Friend friend1 = this.friendRepository.findFirstByUserIdAndSecondUserId(userFriendId, userId).orElse(null);
+        this.friendRepository.delete(friend1);
+        // return modelMapper.map(userFriend, UserDTO.class);
     }
 
     @Override

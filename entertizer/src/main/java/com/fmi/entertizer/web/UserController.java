@@ -57,18 +57,24 @@ public class UserController {
 
     @RequestMapping(value = "/friends/add", method = RequestMethod.POST)
     public FriendDTO addFriend(@RequestBody Map<String, Long> payload){
-        return userService.addFriend(payload.get("userId1"), payload.get("userId2"));
+        return userService.addFriend(payload.get("userId"), payload.get("friendId"));
     }
 
     @RequestMapping(value = "/friends/confirm", method = RequestMethod.POST)
     public List<UserDTO> confirmFriends(@RequestBody Map<String, Long> map){
-        return userService.friendRequests(map.get("id"));
+        return userService.friendRequests(map.get("userId"));
     }
 
     @RequestMapping(value = "/friends/delete", method = RequestMethod.DELETE)
     public void delFriend(@RequestBody Map<String, Long> payload){
         userService.removeFriend(payload.get("userId"), payload.get("friendId"));
     }
+
+    @RequestMapping(value = "/friends/view/accepted", method = RequestMethod.POST)
+    public List<UserDTO> viewFriendsWithStatusAccepted(@RequestBody Map<String, Long> payload){
+        return userService.viewFriends(payload.get("userId"));
+    }
+
 
 
 }
