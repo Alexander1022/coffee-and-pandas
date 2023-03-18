@@ -12,7 +12,7 @@ import com.fmi.entertizer.repository.FriendRepository;
 import com.fmi.entertizer.repository.UserRepository;
 import com.fmi.entertizer.service.UserService;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.IntStream;
+
 
 @Service
 public class UserServiceImpl implements UserService {
