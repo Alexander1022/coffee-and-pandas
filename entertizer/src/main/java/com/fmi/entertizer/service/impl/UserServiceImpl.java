@@ -137,7 +137,7 @@ public class UserServiceImpl implements UserService {
 //                .filter(i -> user.getFriends().get(i).getSecondUser().getEmail().equals(userFriend.getEmail()))
 //                .findFirst()
 //                .orElse(-1);
-        user.getFriends().remove(userFriend);
+         user.getFriends().remove(userFriend);
 //        System.out.println(friendIndex);
 //        user.getFriends().remove(friendIndex);
 //        int friendIndex2 = IntStream.range(0, user.getFriends().size())
