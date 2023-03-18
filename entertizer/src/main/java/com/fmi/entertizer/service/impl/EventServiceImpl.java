@@ -120,9 +120,8 @@ public class EventServiceImpl implements EventService {
 
     }
 
-    @Override
     public List<EventDTO> eventsInTheNext7Days(){
-        this.eventRepository.findAll().stream().filter(ev-> ChronoUnit.DAYS.between(LocalDate.now(), ev.getDate())<=7);
+         this.eventRepository.findAll().stream().filter(ev-> ChronoUnit.DAYS.between(LocalDate.now(), ev.getDate())<=7);
     }
     //TODO: recent events
 
