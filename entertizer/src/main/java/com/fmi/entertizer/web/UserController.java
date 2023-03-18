@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3001")
 @RequestMapping("/users")
 public class UserController {
     @Autowired
@@ -26,6 +27,7 @@ public class UserController {
     public void updateUser(@RequestBody UserDTO user, @PathVariable Long id){
         userService.updateUserFirstAndLastNames(user, id);
     }
+
 
 
 
