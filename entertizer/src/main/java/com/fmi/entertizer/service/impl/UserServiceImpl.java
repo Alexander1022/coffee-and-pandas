@@ -137,16 +137,16 @@ public class UserServiceImpl implements UserService {
 //                .filter(i -> user.getFriends().get(i).getSecondUser().getEmail().equals(userFriend.getEmail()))
 //                .findFirst()
 //                .orElse(-1);
-         user.getFriends().remove(userFriend);
-//        System.out.println(friendIndex);
-//        user.getFriends().remove(friendIndex);
-//        int friendIndex2 = IntStream.range(0, user.getFriends().size())
-//                .filter(i -> userFriend.getFriends().get(i).getSecondUser().getEmail().equals(user.getEmail()))
-//                .findFirst()
-//                .orElse(-1);
-//        System.out.println(friendIndex2);
-//        userFriend.getFriends().remove(friendIndex2);
-        userFriend.getFriends().remove(user);
+
+         int index = 0;
+        for(int i = 0; i < user.getFriends().size(); i++){
+            if(user.getFriends().get(i).getId().equals(userFriendId)) {
+                index = i;
+                break;
+            }
+        }
+        user.getFriends().remove(index);
+        //userFriend.getFriends().remove(user);
         this.userRepository.save(user);
         return modelMapper.map(userFriend, UserDTO.class);
     }
