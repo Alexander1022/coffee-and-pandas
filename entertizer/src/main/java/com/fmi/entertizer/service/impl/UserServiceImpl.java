@@ -53,7 +53,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String loginUser(UserDTO userDTO){
         User user = this.userRepository.findFirstByEmail(userDTO.getEmail()).orElse(null);
-        if (user == null) return "No such user";
+        if (user == null) throw new UserNotFoundException("No such user.");
         if(!bCryptPasswordEncoder.matches(userDTO.getPassword(), user.getPassword())){
             return "Wrong password";
         }

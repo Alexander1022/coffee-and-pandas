@@ -34,7 +34,10 @@ public class UserController {
         userService.updateUserFirstAndLastNames(user, id);
     }
 
-
+    @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = {"application/json"})
+    public String login(@RequestBody UserDTO userDTO){
+        return userService.loginUser(userDTO);
+    }
 
 
 }
