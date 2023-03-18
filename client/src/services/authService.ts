@@ -6,7 +6,8 @@ const BACKEND_PORT:string | undefined = process.env.REACT_APP_API_PORT;
 const API_URL:string = `http://${BACKEND_URL}:${BACKEND_PORT}/users/`;
 
 export const register = (firstName: string, lastName: string, email: string, password: string) => {
-    return axios.post(API_URL + 'add', {
+    console.log('I am trying to register a new user to ' + API_URL);
+    return axios.post(API_URL + 'register', {
         firstName,
         lastName,
         email,
