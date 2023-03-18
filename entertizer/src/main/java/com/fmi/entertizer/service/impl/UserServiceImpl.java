@@ -160,7 +160,8 @@ public class UserServiceImpl implements UserService {
         });
         return searchResults;
     }
-
+//TODO: add show friends
+    //TODO: add view friend requests
     private void throwExceptionIfUserExist(String email) {
         User userWithEmail = this.userRepository.findFirstByEmail(email).orElse(null);
         if (userWithEmail != null) {

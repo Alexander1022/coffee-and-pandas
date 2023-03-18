@@ -21,4 +21,10 @@ public interface EventService {
     EventDTO deleteEvent(EventDTO eventDTO);
 
     List<EventDTO> searchResults(String search);
+
+    EventDTO addFriendToEvent(UserDTO userFriendDTO, EventDTO eventDTO);
+
+    List<EventDTO> viewMyEvents(UserDTO userDTO);
+
+    List<EventDTO> viewEventsCreatedBy(UserDTO userDTO);
 }
