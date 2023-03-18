@@ -13,6 +13,9 @@ import com.fmi.entertizer.service.PlaceService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //TODO: add place methods
 //TODO: rating revues
 @Service
@@ -60,7 +63,12 @@ public class PlaceServiceImpl implements PlaceService {
         return placeDTO;
     }
 
-//    @Override
-//    public List<String>
+    @Override
+    public List <String> allUserReviewsByPlace(Long placeId){
+        Place place = this.placeRepository.findFirstById(placeId).orElse(null);
+        List<String> reviews = new ArrayList<>();
+        if(place.getPlaceUser() != null) place.getPlaceUser().forEach(pu->reviews.add(pu.getReview()));
+        return reviews;
+    }
 //    //TODO: add reviews
 }

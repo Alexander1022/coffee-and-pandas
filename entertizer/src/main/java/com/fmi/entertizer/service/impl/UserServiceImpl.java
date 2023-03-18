@@ -135,9 +135,9 @@ public class UserServiceImpl implements UserService {
 //                    (f.getFirstUser().getId().equals(userFriendId) && f.getSecondUser().getId().equals(userId))){
 //                this.friendRepository.delete(f);
 
-        Friend friend = this.friendRepository.findFirstByUserIdAndSecondUserId(userId, userFriendId).orElse(null);
+        Friend friend = this.friendRepository.findByFirstUserIdAndSecondUserId(userId, userFriendId).orElse(null);
         this.friendRepository.delete(friend);
-        Friend friend1 = this.friendRepository.findFirstByUserIdAndSecondUserId(userFriendId, userId).orElse(null);
+        Friend friend1 = this.friendRepository.findByFirstUserIdAndSecondUserId(userFriendId, userId).orElse(null);
         this.friendRepository.delete(friend1);
         // return modelMapper.map(userFriend, UserDTO.class);
     }

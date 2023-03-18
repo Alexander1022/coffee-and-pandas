@@ -12,5 +12,5 @@ public interface FriendRepository extends JpaRepository<Friend, Long> {
     @Transactional
     void deleteByFirstUserIdAndSecondUserId(Long firstId, Long secondId);
 
-    Optional<Friend> findFirstByUserIdAndSecondUserId(Long firstId, Long secondId);
+    Optional<Friend> findByFirstUserIdAndSecondUserId(Long firstId, Long secondId);
 }
