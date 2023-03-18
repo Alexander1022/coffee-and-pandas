@@ -132,25 +132,13 @@ public class UserServiceImpl implements UserService {
     public UserDTO removeFriend(Long userId, Long userFriendId) {
         User user = this.userRepository.findFirstById(userId).orElse(null);
         User userFriend = this.userRepository.findFirstById(userFriendId).orElse(null);
-//        if (user==null) return null;
-////        int friendIndex = IntStream.range(0, user.getFriends().size())
-////                .filter(i -> user.getFriends().get(i).getSecondUser().getEmail().equals(userFriend.getEmail()))
-////                .findFirst()
-////                .orElse(-1);
-//
-//         int index = 0;
-//        for(int i = 0; i < user.getFriends().size(); i++){
-//            if(user.getFriends().get(i).getId().equals(userFriendId)) {
-//                index = i;
-//                break;
-//            }
-//        }
-//        user.getFriends().remove(index);
-//        System.out.println(index);
-//        //userFriend.getFriends().remove(user);
-//        this.userRepository.save(user);
-//        this.friendRepository.save()
-        this.friendRepository.deleteByFirstUserIdAndSecondUserId(userId, userFriendId);
+
+        this.friendRepository.findAll().forEach(f->{
+            if((f.getFirstUser().getId().equals(userId) && f.getSecondUser().getId().equals(userFriendId)) ||
+                    (f.getFirstUser().getId().equals(userFriendId) && f.getSecondUser().getId().equals(userId))){
+                this.friendRepository.delete(f);
+            }
+        });
         return modelMapper.map(userFriend, UserDTO.class);
     }
 

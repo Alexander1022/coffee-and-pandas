@@ -60,5 +60,7 @@ public class PlaceServiceImpl implements PlaceService {
         return placeDTO;
     }
 
-    //TODO: add reviews
+//    @Override
+//    public List<String>
+//    //TODO: add reviews
 }
