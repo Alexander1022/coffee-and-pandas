@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface UserService {
     public List<UserDTO> getAllUsers();
-    public UserDTO addUser(UserDTO userDTO);
 
     public List<UserDTO> getUserFriends(UserDTO userDTO);
 

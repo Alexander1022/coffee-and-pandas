@@ -35,12 +35,17 @@ public class UserServiceImpl implements UserService {
         return users;
     }
 
-    @Override
-    public UserDTO addUser(UserDTO userDTO) {
-        User user = modelMapper.map(userDTO, User.class);
-        //this.userRepository.sa
-        return null;
+
+    private UserDTO registerNewUser(UserDTO userServiceModel) {
+        throwExceptionIfUserExist(userServiceModel.getEmail());
+
+        User user = this.modelMapper.map(userServiceModel, User.class);
+        user.setPassword(bCryptPasswordEncoder.encode(userServiceModel.getPassword()));
+
+        User user1 = this.userRepository.saveAndFlush(user);
+        return this.modelMapper.map(user1, UserDTO.class);
     }
+
 
     @Override
     public List<UserDTO> getUserFriends(UserDTO userDTO) {
