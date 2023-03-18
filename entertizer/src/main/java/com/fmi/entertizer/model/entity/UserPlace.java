@@ -17,8 +17,22 @@ public class UserPlace extends BaseEntity{
     private int rating;
 
     @Column
-    private String revue;
+    private String review;
 
+    public UserPlace() {
+    }
+
+    public UserPlace(User user, Place place) {
+        this.user = user;
+        this.place = place;
+    }
+
+    public UserPlace(User user, Place place, int rating, String revue) {
+        this.user = user;
+        this.place = place;
+        this.rating = rating;
+        this.review = review;
+    }
 
     public User getUser() {
         return user;
@@ -44,11 +58,11 @@ public class UserPlace extends BaseEntity{
         this.rating = rating;
     }
 
-    public String getRevue() {
-        return revue;
+    public String getReview() {
+        return review;
     }
 
-    public void setRevue(String revue) {
-        this.revue = revue;
+    public void setReview(String review) {
+        this.review = review;
     }
 }

@@ -138,12 +138,26 @@ public class UserServiceImpl implements UserService {
         return friendRequests;
     }
 
-    public boolean friendRequestInteraction(UserDTO userSentTo, UserDTO userSentFrom, boolean accepted){
+    @Override
+    public List<UserDTO> viewFriends(UserDTO userDTO){
+        User user = this.userRepository.getUserById(userDTO.getId()).orElse(null);
+        List<UserDTO> friendRequests = new ArrayList<>();
+        user.getFriends().stream().forEach(f->{
+            if(f.getStatus() == Status.ACCEPTED){
+                friendRequests.add(modelMapper.map(f.getSecondUser(), UserDTO.class));
+            }
+        });
+        return friendRequests;
+    }
+    @Override
+    public void friendRequestInteraction(UserDTO userSentTo, UserDTO userSentFrom, boolean accepted){
         User user = this.userRepository.getUserById(userSentTo.getId()).orElse(null);
         if(accepted){
             user.getFriends().stream().filter(f->f.getId().equals(userSentFrom.getId())).findFirst().get().setStatus(Status.ACCEPTED);
+        } else {
+            removeFriend(userSentTo, userSentFrom);
         }
-        return false;
+        this.userRepository.save(user);
     }
     @Override
     public List<UserDTO> searchResults(String search){

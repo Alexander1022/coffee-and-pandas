@@ -16,6 +16,16 @@ public class UserEvent extends BaseEntity{
 
     @Enumerated(EnumType.ORDINAL)
     private Status invitationStatus;
+
+    public UserEvent() {
+    }
+
+    public UserEvent(User user, Event event, Status invitationStatus) {
+        this.user = user;
+        this.event = event;
+        this.invitationStatus = invitationStatus;
+    }
+
     public User getUser() {
         return user;
     }

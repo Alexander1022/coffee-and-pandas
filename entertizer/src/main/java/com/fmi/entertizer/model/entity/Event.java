@@ -52,6 +52,14 @@ public class Event extends BaseEntity{
     public Event() {
     }
 
+    public User getCreator() {
+        return creator;
+    }
+
+    public void setCreator(User creator) {
+        this.creator = creator;
+    }
+
     public String getName() {
         return name;
     }
