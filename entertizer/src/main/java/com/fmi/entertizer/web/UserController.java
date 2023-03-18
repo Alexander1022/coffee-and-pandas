@@ -45,10 +45,10 @@ public class UserController {
     }
 
 
-    @RequestMapping(value = "/{id}/friends")
-    public UserDTO addFriendById(@PathVariable Long id){
-        return userService.addFriend();
-    }
+//    @RequestMapping(value = "/{id}/friends")
+//    public UserDTO addFriendById(@PathVariable Long id){
+//        return
+//    }
 
 
 }
