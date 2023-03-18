@@ -60,5 +60,10 @@ public class UserController {
         return userService.addFriend(payload.get("userId1"), payload.get("userId2"));
     }
 
+    @RequestMapping(value = "/friends/confirm", method = RequestMethod.POST)
+    public List<UserDTO> confirmFriends(@RequestBody Map<String, Long> map){
+        return userService.friendRequests(map.get("id"));
+    }
+
 
 }
