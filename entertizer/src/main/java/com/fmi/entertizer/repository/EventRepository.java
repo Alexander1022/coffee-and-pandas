@@ -1,6 +1,7 @@
 package com.fmi.entertizer.repository;
 
 import com.fmi.entertizer.model.entity.Event;
+import com.fmi.entertizer.model.entity.User;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -15,6 +16,12 @@ import java.util.Optional;
 public interface EventRepository extends JpaRepository<Event, Long> {
 
     Optional<Event> findFirstById(Long id);
+
+    @Modifying
+    @Transactional
+    @Query(value = "select * from Event ", nativeQuery = true)
+    Optional<Event> getAll();
+
 
     @Modifying
     @Transactional

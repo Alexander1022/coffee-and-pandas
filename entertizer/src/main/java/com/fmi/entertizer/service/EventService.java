@@ -7,6 +7,8 @@ import com.fmi.entertizer.model.service.PlaceDTO;
 import com.fmi.entertizer.model.service.UserDTO;
 import jakarta.transaction.Transactional;
 
+import java.util.List;
+
 public interface EventService {
 
     @Transactional
@@ -15,4 +17,8 @@ public interface EventService {
     EventDTO addEvent(UserDTO userDTO, EventDTO eventDTO, PlaceDTO placeDTO);
 
     EventDTO updateEvent(EventDTO eventDTO);
+
+    EventDTO deleteEvent(EventDTO eventDTO);
+
+    List<EventDTO> searchResults(String search);
 }
