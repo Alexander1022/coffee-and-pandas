@@ -113,6 +113,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserDTO> searchResults(String search){
+        List<User> allUsers = this.userRepository.getAll().stream().toList();
+        List<UserDTO> searchResults = new ArrayList<>();
+        allUsers.forEach(u -> {
+            if(u.getFirstName().contains(search) || u.getLastName().contains(search)){
+                UserDTO userDTO = modelMapper.map(u, UserDTO.class);
+                searchResults.add(userDTO);
+            }
+        });
+        return searchResults;
+    }
+    @Override
     public UserDTO removeFriend(UserDTO userDTO, UserDTO userFriend) {
         User user = this.userRepository.getUserById(userDTO.getId()).orElse(null);
         if (user==null) return null;
@@ -126,9 +138,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private void throwExceptionIfUserExist(String email) {
-
         User userWithEmail = this.userRepository.findFirstByEmail(email).orElse(null);
-
         if (userWithEmail != null) {
             throw new UserAlreadyExistsException(
                     "There is an account with that email address: "
