@@ -120,15 +120,7 @@ public class UserServiceImpl implements UserService {
     public FriendDTO addFriend(Long userId1, Long userId2) {
         User user = this.userRepository.findFirstById(userId1).orElse(null);
         if (user==null) return null;
-        User friendUser = user
-                .getFriends()
-                .stream()
-                .filter(u -> u.getSecondUser()
-                        .getId()
-                        .equals(userId2))
-                .findFirst()
-                .get()
-                .getSecondUser();
+        User friendUser = this.userRepository.findFirstById(userId2).orElse(null);
         user.getFriends().add(new Friend(user, friendUser, Status.PENDING_SENT));
         friendUser.getFriends().add(new Friend(friendUser, user, Status.PENDING_RECEIVED));
         this.userRepository.save(user);
