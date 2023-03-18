@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { login } from '../services/authService';
+import { login, setUserID } from '../services/authService';
 
 const SignIn = () => {
     const [email, setEmail] = useState('');
@@ -27,6 +27,12 @@ const SignIn = () => {
         login(email, password).then(
             (response) => {
                 console.log(response.data);
+                console.log(typeof(response.data));
+
+                if(response.status === 200) {
+                    setUserID(response.data.id);
+                }
+                
                 setAlright(true);
                 navigate('/home');
             },
