@@ -2,7 +2,6 @@ package com.fmi.entertizer.web;
 import com.fmi.entertizer.error.UserNotFoundException;
 import com.fmi.entertizer.model.service.UserDTO;
 import com.fmi.entertizer.model.service.UserRegistrationDTO;
-//import com.fmi.entertizer.service.JwtService;
 import com.fmi.entertizer.service.UserService;
 import com.fmi.entertizer.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,21 +44,11 @@ public class UserController {
         return userService.loginUser(userDTO);
     }
 
-//    @RequestMapping( value = "/auth", method = RequestMethod.POST)
-//    public String authAndGetToken(@RequestBody UserRegistrationDTO authRequest){
-//        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
-//        if(authentication.isAuthenticated()){
-//            return jwtService.generateToken(authRequest.getEmail());
-//        }
-//        else {
-//            throw new UserNotFoundException("Invalid user request!");
-//        }
-//    }
 
-//    @RequestMapping(value = "/{id}/friends")
-//    public UserDTO addFriendById(@PathVariable Long id){
-//        return userService.addFriend();
-//    }
+    @RequestMapping(value = "/{id}/friends")
+    public UserDTO addFriendById(@PathVariable Long id){
+        return userService.addFriend();
+    }
 
 
 }
