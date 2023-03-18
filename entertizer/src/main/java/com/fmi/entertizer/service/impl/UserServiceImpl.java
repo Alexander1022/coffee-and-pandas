@@ -8,13 +8,13 @@ import com.fmi.entertizer.model.entity.User;
 import com.fmi.entertizer.model.entity.enums.Status;
 import com.fmi.entertizer.model.service.FriendDTO;
 import com.fmi.entertizer.model.service.UserDTO;
+import com.fmi.entertizer.repository.FriendRepository;
 import com.fmi.entertizer.repository.UserRepository;
 import com.fmi.entertizer.service.UserService;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.lang.constant.Constable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
@@ -22,10 +22,12 @@ import java.util.stream.IntStream;
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final FriendRepository friendRepository;
     private final ModelMapper modelMapper;
 
-    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper) {
+    public UserServiceImpl(UserRepository userRepository, FriendRepository friendRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
+        this.friendRepository = friendRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -115,6 +117,7 @@ public class UserServiceImpl implements UserService {
         user.getFriends().add(new Friend(user, friendUser, Status.PENDING_SENT));
         friendUser.getFriends().add(new Friend(friendUser, user, Status.PENDING_RECEIVED));
         this.userRepository.save(user);
+
         return new FriendDTO(userId1, userId2, Status.PENDING_SENT);
     }
 
