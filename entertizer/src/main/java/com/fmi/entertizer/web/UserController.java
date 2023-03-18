@@ -1,19 +1,24 @@
 package com.fmi.entertizer.web;
 import com.fmi.entertizer.error.UserNotFoundException;
+import com.fmi.entertizer.model.service.FriendDTO;
 import com.fmi.entertizer.model.service.UserDTO;
 import com.fmi.entertizer.model.service.UserRegistrationDTO;
 import com.fmi.entertizer.service.UserService;
 import com.fmi.entertizer.service.impl.UserServiceImpl;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.Authenticator;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3001")
 @RequestMapping("/users")
 public class UserController {
+
+    private ModelMapper modelMapper;
     @Autowired
     private UserServiceImpl userService;
 
@@ -45,10 +50,15 @@ public class UserController {
     }
 
 
-//    @RequestMapping(value = "/{id}/friends")
-//    public UserDTO addFriendById(@PathVariable Long id){
-//        return
-//    }
+    @RequestMapping(value = "/{id}/friends")
+    public List<UserDTO> showFriends(@PathVariable Long id){
+        return userService.viewFriends(id);
+    }
+
+    @RequestMapping(value = "/friends/add/pending", method = RequestMethod.POST)
+    public FriendDTO addFriend(@RequestBody Map<String, Long> payload){
+        return userService.addFriend(payload.get("userId1"), payload.get("userId2"));
+    }
 
 
 }

@@ -33,4 +33,8 @@ public interface UserService {
     List<UserDTO> searchResults(String search);
 
     UserDTO removeFriend(Long userId, Long userFriendId);
+
+
+
+
 }
