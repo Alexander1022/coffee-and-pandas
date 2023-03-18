@@ -20,8 +20,7 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.stream.Collectors.toList;
+import java.util.stream.Collectors;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -120,9 +119,21 @@ public class EventServiceImpl implements EventService {
 
     }
 
-    public List<EventDTO> eventsInTheNext7Days(){
-         this.eventRepository.findAll().stream().filter(ev-> ChronoUnit.DAYS.between(LocalDate.now(), ev.getDate())<=7);
+    @Override
+    public List<EventDTO> eventsImInvitedTo(UserDTO userDTO){
+        List<Event> events = this.userEventRepository.findAllByUserId(userDTO.getId()).stream().map(UserEvent::getEvent).collect(Collectors.toList());
+        List<EventDTO> eventDTOS = new ArrayList<>();
+
+        events.forEach(e->eventDTOS.add(modelMapper.map(e, EventDTO.class)));
+        return eventDTOS;
     }
-    //TODO: recent events
+    @Override
+    public List<EventDTO> eventsInTheNext7Days(){
+        List<EventDTO> events = new ArrayList<>();
+        this.eventRepository.findAll().stream()
+                .filter(ev-> ChronoUnit.DAYS.between(LocalDate.now(), ev.getDate())<=7)
+                .forEach(ev->events.add(modelMapper.map(ev, EventDTO.class)));
+        return events;
+    }
 
 }

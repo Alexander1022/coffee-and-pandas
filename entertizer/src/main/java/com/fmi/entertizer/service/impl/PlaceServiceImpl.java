@@ -70,5 +70,5 @@ public class PlaceServiceImpl implements PlaceService {
         if(place.getPlaceUser() != null) place.getPlaceUser().forEach(pu->reviews.add(pu.getReview()));
         return reviews;
     }
-//    //TODO: add reviews
+
 }
