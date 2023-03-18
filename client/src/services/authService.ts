@@ -16,6 +16,7 @@ export const register = (firstName: string, lastName: string, email: string, pas
 };
 
 export const login = (email: string, password: string) => {
+    console.log('I am trying to login a new user to ' + API_URL);
     return axios.post(API_URL + 'login', {
         email,
         password
@@ -24,7 +25,7 @@ export const login = (email: string, password: string) => {
 
 export const getCurrentUser = () => {
     const userToken = localStorage.getItem('token');
-
+    
     if (userToken) {
         return JSON.parse(userToken);
     }

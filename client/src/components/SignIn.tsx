@@ -51,16 +51,13 @@ const SignIn = () => {
                 <input required type="password" value={password} onChange={handleChangePassword} className="mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="Password" />
                 <hr className="w-120 h-0.5 border-[#550E63]"/>
                 <div className='flex flex-row justify-center space-x-3'>
-                <input type="checkbox" className='outline-none'/>
-                <label className='text-white text-sm'>Keep me logged in</label>
+                    <input type="checkbox" className='outline-none'/>
+                    <label className='text-white text-sm'>Keep me logged in</label>
                 </div>
-            </form>
-        
-            <div>
-            <button className='text-xl text-white bg-[#550E63] py-2 px-10 rounded-full mt-2 drop-shadow-lg hover:text-[#550E63] hover:bg-white'>
-                Log In
-            </button>
-            </div>      
+                <button type="submit" className='text-xl text-white bg-[#550E63] py-2 px-10 rounded-full mt-2 drop-shadow-lg hover:text-[#550E63] hover:bg-white'>
+                    Log In
+                </button>
+            </form>   
         </div>
 
         <div className="flex flex-col justify-center min-h-screen max-w text-center">
