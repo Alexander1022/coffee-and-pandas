@@ -1,6 +1,7 @@
 package com.fmi.entertizer.service;
 
 import com.fmi.entertizer.model.entity.User;
+import com.fmi.entertizer.model.service.FriendDTO;
 import com.fmi.entertizer.model.service.UserDTO;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public interface UserService {
     public List<UserDTO> getUserFriends(Long id);
 
 
-    public UserDTO addFriend(Long userId1, Long userId2);
+    public FriendDTO addFriend(Long userId1, Long userId2);
 
     List<UserDTO> friendRequests(Long id);
 

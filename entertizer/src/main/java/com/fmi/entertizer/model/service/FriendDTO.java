@@ -1,38 +1,40 @@
 package com.fmi.entertizer.model.service;
 
+import com.fmi.entertizer.model.entity.enums.Status;
+
 public class FriendDTO {
-    int firstUserId;
-    int secondUserId;
+    Long firstUserId;
+    Long secondUserId;
 
-    int status;
+    Status status;
 
-    public FriendDTO(int firstUserId, int secondUserId, int status) {
+    public FriendDTO(Long firstUserId, Long secondUserId, Status status) {
         this.firstUserId = firstUserId;
         this.secondUserId = secondUserId;
         this.status = status;
     }
 
-    public int getFirstUserId() {
+    public Long getFirstUserId() {
         return firstUserId;
     }
 
-    public void setFirstUserId(int firstUserId) {
+    public void setFirstUserId(Long firstUserId) {
         this.firstUserId = firstUserId;
     }
 
-    public int getSecondUserId() {
+    public Long getSecondUserId() {
         return secondUserId;
     }
 
-    public void setSecondUserId(int secondUserId) {
+    public void setSecondUserId(Long secondUserId) {
         this.secondUserId = secondUserId;
     }
 
-    public int getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 }

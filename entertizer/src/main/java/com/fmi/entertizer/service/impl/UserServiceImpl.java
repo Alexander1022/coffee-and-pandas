@@ -6,6 +6,7 @@ import com.fmi.entertizer.error.UserNotFoundException;
 import com.fmi.entertizer.model.entity.Friend;
 import com.fmi.entertizer.model.entity.User;
 import com.fmi.entertizer.model.entity.enums.Status;
+import com.fmi.entertizer.model.service.FriendDTO;
 import com.fmi.entertizer.model.service.UserDTO;
 import com.fmi.entertizer.repository.UserRepository;
 import com.fmi.entertizer.service.UserService;
@@ -107,14 +108,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO addFriend(Long userId1, Long userId2) {
+    public FriendDTO addFriend(Long userId1, Long userId2) {
         User user = this.userRepository.findFirstById(userId1).orElse(null);
         if (user==null) return null;
         User friendUser = user.getFriends().stream().filter(u -> u.getSecondUser().getId().equals(userId2)).findFirst().get().getSecondUser();
         user.getFriends().add(new Friend(user, friendUser, Status.PENDING_SENT));
         friendUser.getFriends().add(new Friend(friendUser, user, Status.PENDING_RECEIVED));
         this.userRepository.save(user);
-        return modelMapper.map(friendUser, UserDTO.class);
+        return new FriendDTO(userId1, userId2, Status.PENDING_SENT);
     }
 
     @Override
