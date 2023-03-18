@@ -57,10 +57,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void updateUserFirstAndLastNames(UserDTO userDTO, Long id){
+        User user = this.userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with given id was not found !"));
+        user.setFirstName(userDTO.getFirstName());
+        user.setLastName(userDTO.getLastName());
+        this.userRepository.save(user);
+    }
+
+    @Override
     public UserDTO findByEmail(String email) {
 
         User user = this.userRepository.findFirstByEmail(email)
-                .orElseThrow(() -> new InvalidEmailException("User with that email address does't exist !"));
+                .orElseThrow(() -> new InvalidEmailException("User with that email address doesn't exist !"));
 
         return this.modelMapper.map(user, UserDTO.class);
 
@@ -87,7 +95,6 @@ public class UserServiceImpl implements UserService {
     public UserDTO addFriend(UserDTO userDTO, UserDTO userFriend) {
         User user = this.userRepository.getUserById(userDTO.getId()).orElse(null);
         if (user==null) return null;
-        this.userRepository.delete(user);
         User friendUser = user.getFriends().stream().filter(u -> u.getSecondUser().getId().equals(userFriend.getId())).findFirst().get().getSecondUser();
         user.getFriends().add(new Friend(user, friendUser, Status.ACCEPTED));
         this.userRepository.save(user);
@@ -98,7 +105,6 @@ public class UserServiceImpl implements UserService {
     public UserDTO removeFriend(UserDTO userDTO, UserDTO userFriend) {
         User user = this.userRepository.getUserById(userDTO.getId()).orElse(null);
         if (user==null) return null;
-        this.userRepository.delete(user);
         int friendIndex = IntStream.range(0, user.getFriends().size())
                 .filter(i -> user.getFriends().get(i).getSecondUser().getEmail().equals(userFriend.getEmail()))
                 .findFirst()

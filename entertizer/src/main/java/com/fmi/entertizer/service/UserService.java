@@ -8,6 +8,7 @@ import java.util.List;
 public interface UserService {
     public List<UserDTO> getAllUsers();
     public UserDTO registerNewUser(UserDTO userServiceModel);
+    public void updateUserFirstAndLastNames(UserDTO userDTO, Long id);
 
     UserDTO findById(Long id);
 

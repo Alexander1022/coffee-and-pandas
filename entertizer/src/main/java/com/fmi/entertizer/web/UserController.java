@@ -3,10 +3,7 @@ import com.fmi.entertizer.model.service.UserDTO;
 import com.fmi.entertizer.service.UserService;
 import com.fmi.entertizer.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +20,11 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void addUser(@RequestBody UserDTO user){
          userService.registerNewUser(user);
+    }
+
+    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT)
+    public void updateUser(@RequestBody UserDTO user, @PathVariable Long id){
+        userService.updateUserFirstAndLastNames(user, id);
     }
 
 
