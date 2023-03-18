@@ -12,11 +12,14 @@ import com.fmi.entertizer.repository.FriendRepository;
 import com.fmi.entertizer.repository.UserRepository;
 import com.fmi.entertizer.service.UserService;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.IntStream;
 
 @Service
@@ -51,16 +54,20 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public String loginUser(UserDTO userDTO){
+    public Map<String, String> loginUser(UserDTO userDTO){
         User user = this.userRepository.findFirstByEmail(userDTO.getEmail()).orElse(null);
         if (user == null) throw new UserNotFoundException("No such user.");
         List<User> allUsers = new ArrayList<>();
         this.userRepository.findAll().forEach(allUsers::add);
         User user1 = allUsers.stream().filter(u-> u.getPassword().equals(userDTO.getPassword())).findFirst().orElse(null);
         if(user1 == null){
-            return "Wrong password";
+            HashMap<String,String> map = new HashMap<>();
+            map.put("Err", "User1 is null");
+            return map;
         }
-        return user1.getId().toString();
+        HashMap<String,String> map = new HashMap<>();
+        map.put("id", user1.getId().toString());
+        return map;
     }
 
     @Override
@@ -113,12 +120,15 @@ public class UserServiceImpl implements UserService {
     public FriendDTO addFriend(Long userId1, Long userId2) {
         User user = this.userRepository.findFirstById(userId1).orElse(null);
         if (user==null) return null;
-//        User friendUser = user.getFriends().stream()
-//                .filter(u -> u.getSecondUser()
-//                        .getId()
-//                        .equals(userId2))
-//                .findFirst().get().getSecondUser();
-        User friendUser = this.userRepository.findFirstById(userId2).orElse(null);
+        User friendUser = user
+                .getFriends()
+                .stream()
+                .filter(u -> u.getSecondUser()
+                        .getId()
+                        .equals(userId2))
+                .findFirst()
+                .get()
+                .getSecondUser();
         user.getFriends().add(new Friend(user, friendUser, Status.PENDING_SENT));
         friendUser.getFriends().add(new Friend(friendUser, user, Status.PENDING_RECEIVED));
         this.userRepository.save(user);

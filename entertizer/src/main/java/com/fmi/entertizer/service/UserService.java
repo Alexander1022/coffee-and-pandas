@@ -5,13 +5,14 @@ import com.fmi.entertizer.model.service.FriendDTO;
 import com.fmi.entertizer.model.service.UserDTO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     public List<UserDTO> getAllUsers();
     public UserDTO registerNewUser(UserDTO userServiceModel);
     public void updateUserFirstAndLastNames(UserDTO userDTO, Long id);
 
-    String loginUser(UserDTO userDTO);
+    Map<String,String> loginUser(UserDTO userDTO);
 
     UserDTO findById(Long id);
 
