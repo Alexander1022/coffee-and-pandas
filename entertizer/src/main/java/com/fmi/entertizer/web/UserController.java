@@ -1,5 +1,6 @@
 package com.fmi.entertizer.web;
-import com.fmi.entertizer.model.entity.User;
+import com.fmi.entertizer.model.service.UserDTO;
+import com.fmi.entertizer.service.UserService;
 import com.fmi.entertizer.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,18 +12,17 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-public class Controllers {
+public class UserController {
     @Autowired
     private UserServiceImpl userService;
     @RequestMapping("/all")
-    public List<User> getUsers(){
-        //return userService.getAllUsers();
-        return null;
+    public List<UserDTO> getUsers(){
+        return userService.getAllUsers();
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public User addUser(@RequestBody User user){
-        return userService.addUser(user);
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public void addUser(@RequestBody UserDTO user){
+         userService.registerNewUser(user);
     }
 
 

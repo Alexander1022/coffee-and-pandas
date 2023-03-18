@@ -36,13 +36,13 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    private UserDTO registerNewUser(UserDTO userServiceModel) {
+    public UserDTO registerNewUser(UserDTO userServiceModel) {
         throwExceptionIfUserExist(userServiceModel.getEmail());
 
         User user = this.modelMapper.map(userServiceModel, User.class);
         user.setPassword(bCryptPasswordEncoder.encode(userServiceModel.getPassword()));
 
-        User user1 = this.userRepository.saveAndFlush(user);
+        User user1 = this.userRepository.save(user);
         return this.modelMapper.map(user1, UserDTO.class);
     }
 
