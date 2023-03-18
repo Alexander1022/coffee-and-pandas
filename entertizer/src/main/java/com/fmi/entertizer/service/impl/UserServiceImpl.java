@@ -98,8 +98,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> getUserFriends(UserDTO userDTO) {
-        User user = this.userRepository.findFirstById(userDTO.getId()).orElse(null);
+    public List<UserDTO> getUserFriends(Long id) {
+        User user = this.userRepository.findFirstById(id).orElse(null);
         if(user == null) return null;
         List<UserDTO> userFriends = new ArrayList<>();
         user.getFriends().forEach(u -> userFriends.add(modelMapper.map(u, UserDTO.class)));
@@ -132,8 +132,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> friendRequests(UserDTO userDTO){
-        User user = this.userRepository.getUserById(userDTO.getId()).orElse(null);
+    public List<UserDTO> friendRequests(Long id){
+        User user = this.userRepository.getUserById(id).orElse(null);
         List<UserDTO> friendRequests = new ArrayList<>();
         user.getFriends().stream().forEach(f->{
             if(f.getStatus() == Status.PENDING_RECEIVED){

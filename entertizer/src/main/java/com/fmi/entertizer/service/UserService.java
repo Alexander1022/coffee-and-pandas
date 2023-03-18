@@ -18,12 +18,12 @@ public interface UserService {
 
     UserDTO findByCoordinates(String coordinates);
 
-    public List<UserDTO> getUserFriends(UserDTO userDTO);
+    public List<UserDTO> getUserFriends(Long id);
 
 
     public UserDTO addFriend(Long userId1, Long userId2);
 
-    List<UserDTO> friendRequests(UserDTO userDTO);
+    List<UserDTO> friendRequests(Long id);
 
     List<UserDTO> viewFriends(Long id);
 
