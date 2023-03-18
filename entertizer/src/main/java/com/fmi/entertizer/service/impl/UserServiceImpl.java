@@ -152,6 +152,7 @@ public class UserServiceImpl implements UserService {
                     friendRequests.add(modelMapper.map(f.getSecondUser(), UserDTO.class));
                 }
             });
+            friendRequests.forEach(u->u.setPassword(""));
             return friendRequests;
         }
         return null;
