@@ -11,7 +11,6 @@ import com.fmi.entertizer.repository.UserRepository;
 import com.fmi.entertizer.service.UserService;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.lang.constant.Constable;

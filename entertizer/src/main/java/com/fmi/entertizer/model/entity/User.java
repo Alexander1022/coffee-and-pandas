@@ -3,7 +3,6 @@ package com.fmi.entertizer.model.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.List;
