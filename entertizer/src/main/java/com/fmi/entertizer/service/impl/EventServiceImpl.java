@@ -17,8 +17,10 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EventServiceImpl implements EventService {
@@ -81,7 +83,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<EventDTO> searchResults(String search){
-        List<Event> allEvents = this.eventRepository.getAll().stream().toList();
+        List<Event> allEvents = this.eventRepository.findAll().stream().toList();
         List<EventDTO> searchResults = new ArrayList<>();
         allEvents.forEach(e->{
             if(e.getName().contains(search) || e.getDescription().contains(search)){
@@ -111,8 +113,27 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<EventDTO> viewEventsCreatedBy(UserDTO userDTO){
-        return this.eventRepository.getAll().filter(e->e.getCreator().getId().equals(userDTO.getId())).map(event->{
+        return this.eventRepository.findAll().stream().filter(e->e.getCreator().getId().equals(userDTO.getId())).map(event->{
             return new EventDTO(event.getName(), event.getDescription(),event.getDate(), event.getCreator().getId(), event.getPlace().getId());
-        }).stream().toList();
+        }).toList();
+
     }
+
+    @Override
+    public List<EventDTO> eventsImInvitedTo(UserDTO userDTO){
+        List<Event> events = this.userEventRepository.findAllByUserId(userDTO.getId()).stream().map(UserEvent::getEvent).collect(Collectors.toList());
+        List<EventDTO> eventDTOS = new ArrayList<>();
+
+        events.forEach(e->eventDTOS.add(modelMapper.map(e, EventDTO.class)));
+        return eventDTOS;
+    }
+    @Override
+    public List<EventDTO> eventsInTheNext7Days(){
+        List<EventDTO> events = new ArrayList<>();
+        this.eventRepository.findAll().stream()
+                .filter(ev-> ChronoUnit.DAYS.between(LocalDate.now(), ev.getDate())<=7)
+                .forEach(ev->events.add(modelMapper.map(ev, EventDTO.class)));
+        return events;
+    }
+
 }

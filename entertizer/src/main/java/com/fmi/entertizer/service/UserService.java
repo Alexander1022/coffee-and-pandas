@@ -1,16 +1,17 @@
 package com.fmi.entertizer.service;
 
-import com.fmi.entertizer.model.entity.User;
+import com.fmi.entertizer.model.service.FriendDTO;
 import com.fmi.entertizer.model.service.UserDTO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     public List<UserDTO> getAllUsers();
     public UserDTO registerNewUser(UserDTO userServiceModel);
     public void updateUserFirstAndLastNames(UserDTO userDTO, Long id);
 
-    String loginUser(UserDTO userDTO);
+    Map<String,String> loginUser(UserDTO userDTO);
 
     UserDTO findById(Long id);
 
@@ -18,18 +19,22 @@ public interface UserService {
 
     UserDTO findByCoordinates(String coordinates);
 
-    public List<UserDTO> getUserFriends(UserDTO userDTO);
+    public List<UserDTO> getUserFriends(Long id);
 
 
-    UserDTO addFriend(UserDTO userDTO, UserDTO userFriend);
+    public FriendDTO addFriend(Long userId1, Long userId2);
 
-    List<UserDTO> friendRequests(UserDTO userDTO);
+    List<UserDTO> friendRequests(Long id);
 
-    List<UserDTO> viewFriends(UserDTO userDTO);
+    List<UserDTO> viewFriends(Long id);
 
-    void friendRequestInteraction(UserDTO userSentTo, UserDTO userSentFrom, boolean accepted);
+    void friendRequestInteraction(Long userSentTo, Long userSentFrom, boolean accepted);
 
     List<UserDTO> searchResults(String search);
 
-    UserDTO removeFriend(UserDTO userDTO, UserDTO userFriend);
+    void removeFriend(Long userId, Long userFriendId);
+
+
+
+
 }

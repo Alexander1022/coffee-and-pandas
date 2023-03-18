@@ -1,11 +1,17 @@
 package com.fmi.entertizer.model.service;
 
+import com.fmi.entertizer.model.entity.User;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
-public class UserRegistrationDTO {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+
+public class UserRegistrationDTO  {
     @NotBlank(message = "First name is required")
     private String firstName;
 
@@ -54,10 +60,6 @@ public class UserRegistrationDTO {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {

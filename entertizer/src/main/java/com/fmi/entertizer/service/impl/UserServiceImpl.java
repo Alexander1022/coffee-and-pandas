@@ -6,28 +6,32 @@ import com.fmi.entertizer.error.UserNotFoundException;
 import com.fmi.entertizer.model.entity.Friend;
 import com.fmi.entertizer.model.entity.User;
 import com.fmi.entertizer.model.entity.enums.Status;
+import com.fmi.entertizer.model.service.FriendDTO;
 import com.fmi.entertizer.model.service.UserDTO;
+import com.fmi.entertizer.repository.FriendRepository;
 import com.fmi.entertizer.repository.UserRepository;
 import com.fmi.entertizer.service.UserService;
 
+
 import org.modelmapper.ModelMapper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.stream.IntStream;
+import java.util.Map;
+
 
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final FriendRepository friendRepository;
     private final ModelMapper modelMapper;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, FriendRepository friendRepository, ModelMapper modelMapper) {
         this.userRepository = userRepository;
+        this.friendRepository = friendRepository;
         this.modelMapper = modelMapper;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
@@ -43,7 +47,6 @@ public class UserServiceImpl implements UserService {
         throwExceptionIfUserExist(userServiceModel.getEmail());
 
         User user = this.modelMapper.map(userServiceModel, User.class);
-        user.setPassword(bCryptPasswordEncoder.encode(userServiceModel.getPassword()));
 
         User user1 = this.userRepository.save(user);
         return this.modelMapper.map(user1, UserDTO.class);
@@ -51,13 +54,20 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public String loginUser(UserDTO userDTO){
+    public Map<String, String> loginUser(UserDTO userDTO){
         User user = this.userRepository.findFirstByEmail(userDTO.getEmail()).orElse(null);
         if (user == null) throw new UserNotFoundException("No such user.");
-        if(!bCryptPasswordEncoder.matches(userDTO.getPassword(), user.getPassword())){
-            return "Wrong password";
+        List<User> allUsers = new ArrayList<>();
+        this.userRepository.findAll().forEach(allUsers::add);
+        User user1 = allUsers.stream().filter(u-> u.getPassword().equals(userDTO.getPassword())).findFirst().orElse(null);
+        if(user1 == null){
+            HashMap<String,String> map = new HashMap<>();
+            map.put("Err", "User1 is null");
+            return map;
         }
-        return "Success";
+        HashMap<String,String> map = new HashMap<>();
+        map.put("id", user1.getId().toString());
+        return map;
     }
 
     @Override
@@ -65,6 +75,10 @@ public class UserServiceImpl implements UserService {
         User user = this.userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with given id was not found !"));
 
         return this.modelMapper.map(user, UserDTO.class);
+    }
+
+    public Long getUserIdByPasswordHash(UserDTO user){
+        return this.userRepository.findByPassword(user.getPassword()).get().getId();
     }
 
     @Override
@@ -94,8 +108,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> getUserFriends(UserDTO userDTO) {
-        User user = this.userRepository.findFirstById(userDTO.getId()).orElse(null);
+    public List<UserDTO> getUserFriends(Long id) {
+        User user = this.userRepository.findFirstById(id).orElse(null);
         if(user == null) return null;
         List<UserDTO> userFriends = new ArrayList<>();
         user.getFriends().forEach(u -> userFriends.add(modelMapper.map(u, UserDTO.class)));
@@ -103,44 +117,50 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO addFriend(UserDTO userDTO, UserDTO userFriend) {
-        User user = this.userRepository.findFirstById(userDTO.getId()).orElse(null);
+    public FriendDTO addFriend(Long userId1, Long userId2) {
+        User user = this.userRepository.findFirstById(userId1).orElse(null);
         if (user==null) return null;
-        User friendUser = user.getFriends().stream().filter(u -> u.getSecondUser().getId().equals(userFriend.getId())).findFirst().get().getSecondUser();
+        User friendUser = this.userRepository.findFirstById(userId2).orElse(null);
         user.getFriends().add(new Friend(user, friendUser, Status.PENDING_SENT));
         friendUser.getFriends().add(new Friend(friendUser, user, Status.PENDING_RECEIVED));
         this.userRepository.save(user);
-        return modelMapper.map(friendUser, UserDTO.class);
+
+        return new FriendDTO(userId1, userId2, Status.PENDING_SENT);
     }
 
     @Override
-    public UserDTO removeFriend(UserDTO userDTO, UserDTO userFriend) {
-        User user = this.userRepository.findFirstById(userDTO.getId()).orElse(null);
-        if (user==null) return null;
-        int friendIndex = IntStream.range(0, user.getFriends().size())
-                .filter(i -> user.getFriends().get(i).getSecondUser().getEmail().equals(userFriend.getEmail()))
-                .findFirst()
-                .orElse(-1);
-        user.getFriends().remove(friendIndex);
-        this.userRepository.save(user);
-        return userFriend;
+    public void removeFriend(Long userId, Long userFriendId) {
+//        this.friendRepository.findAll().forEach(f->{
+//            if((f.getFirstUser().getId().equals(userId) && f.getSecondUser().getId().equals(userFriendId)) ||
+//                    (f.getFirstUser().getId().equals(userFriendId) && f.getSecondUser().getId().equals(userId))){
+//                this.friendRepository.delete(f);
+
+        Friend friend = this.friendRepository.findByFirstUserIdAndSecondUserId(userId, userFriendId).orElse(null);
+        this.friendRepository.delete(friend);
+        Friend friend1 = this.friendRepository.findByFirstUserIdAndSecondUserId(userFriendId, userId).orElse(null);
+        this.friendRepository.delete(friend1);
+        // return modelMapper.map(userFriend, UserDTO.class);
     }
 
     @Override
-    public List<UserDTO> friendRequests(UserDTO userDTO){
-        User user = this.userRepository.getUserById(userDTO.getId()).orElse(null);
-        List<UserDTO> friendRequests = new ArrayList<>();
-        user.getFriends().stream().forEach(f->{
-            if(f.getStatus() == Status.PENDING_RECEIVED){
-                friendRequests.add(modelMapper.map(f.getSecondUser(), UserDTO.class));
-            }
-        });
-        return friendRequests;
+    public List<UserDTO> friendRequests(Long id){
+        User user = this.userRepository.getUserById(id).orElse(null);
+        if(user != null){
+            List<UserDTO> friendRequests = new ArrayList<>();
+            user.getFriends().forEach(f->{
+                if(f.getStatus() == Status.PENDING_RECEIVED){
+                    friendRequests.add(modelMapper.map(f.getSecondUser(), UserDTO.class));
+                }
+            });
+            friendRequests.forEach(u->u.setPassword(""));
+            return friendRequests;
+        }
+        return null;
     }
 
     @Override
-    public List<UserDTO> viewFriends(UserDTO userDTO){
-        User user = this.userRepository.getUserById(userDTO.getId()).orElse(null);
+    public List<UserDTO> viewFriends(Long id){
+        User user = this.userRepository.getUserById(id).orElse(null);
         List<UserDTO> friendRequests = new ArrayList<>();
         user.getFriends().stream().forEach(f->{
             if(f.getStatus() == Status.ACCEPTED){
@@ -150,18 +170,22 @@ public class UserServiceImpl implements UserService {
         return friendRequests;
     }
     @Override
-    public void friendRequestInteraction(UserDTO userSentTo, UserDTO userSentFrom, boolean accepted){
-        User user = this.userRepository.getUserById(userSentTo.getId()).orElse(null);
+    public void friendRequestInteraction(Long userSentTo, Long userSentFrom, boolean accepted){
+        User user = this.userRepository.getUserById(userSentTo).orElse(null);
+        User user2 = this.userRepository.getUserById(userSentFrom).orElse(null);
         if(accepted){
-            user.getFriends().stream().filter(f->f.getId().equals(userSentFrom.getId())).findFirst().get().setStatus(Status.ACCEPTED);
+            user.getFriends().stream().filter(f->f.getId().equals(userSentFrom)).findFirst().get().setStatus(Status.ACCEPTED);
+            user2.getFriends().stream().filter(f->f.getId().equals(userSentTo)).findFirst().get().setStatus(Status.ACCEPTED);
         } else {
             removeFriend(userSentTo, userSentFrom);
         }
         this.userRepository.save(user);
+        this.userRepository.save(user2);
     }
     @Override
     public List<UserDTO> searchResults(String search){
-        List<User> allUsers = this.userRepository.getAll().stream().toList();
+        List<User> allUsers = new ArrayList<>();
+        this.userRepository.findAll().forEach(allUsers::add);
         List<UserDTO> searchResults = new ArrayList<>();
         allUsers.forEach(u -> {
             if(u.getFirstName().contains(search) || u.getLastName().contains(search)){

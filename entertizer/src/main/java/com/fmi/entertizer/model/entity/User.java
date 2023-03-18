@@ -3,7 +3,6 @@ package com.fmi.entertizer.model.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -87,6 +86,7 @@ public class User extends BaseEntity {
 
 
     @OneToMany(
+            fetch = FetchType.EAGER,
             mappedBy = "user",
             cascade = CascadeType.ALL
     )
@@ -98,7 +98,7 @@ public class User extends BaseEntity {
     )
     private List<UserEvent> userEvent = new ArrayList<>();
 
-    @OneToMany(mappedBy = "firstUser", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "firstUser", cascade = CascadeType.ALL)
     private List<Friend> friends = new ArrayList<>();
 
     public String getFirstName() {

@@ -17,11 +17,13 @@ public interface UserRepository extends CrudRepository<User, Long> {
 
     Optional<User> findFirstById(Long id);
 
+    Optional<User> findByPassword(String password);
 
-    @Modifying
-    @Transactional
-    @Query(value = "select * from User ", nativeQuery = true)
-    Optional<User> getAll();
+
+//    @Modifying(flushAutomatically = true)
+//    @Transactional
+//    @Query(value = "select * from User ", nativeQuery = true)
+//    Optional<User> getAll();
 
     Optional<User> getUserById(Long id);
 }
