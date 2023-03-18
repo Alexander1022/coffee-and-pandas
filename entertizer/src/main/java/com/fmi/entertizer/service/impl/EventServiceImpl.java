@@ -20,6 +20,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @Service
 public class EventServiceImpl implements EventService {
 
@@ -81,7 +83,7 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<EventDTO> searchResults(String search){
-        List<Event> allEvents = this.eventRepository.getAll().stream().toList();
+        List<Event> allEvents = this.eventRepository.findAll().stream().toList();
         List<EventDTO> searchResults = new ArrayList<>();
         allEvents.forEach(e->{
             if(e.getName().contains(search) || e.getDescription().contains(search)){
@@ -111,8 +113,9 @@ public class EventServiceImpl implements EventService {
 
     @Override
     public List<EventDTO> viewEventsCreatedBy(UserDTO userDTO){
-        return this.eventRepository.getAll().filter(e->e.getCreator().getId().equals(userDTO.getId())).map(event->{
+        return this.eventRepository.findAll().stream().filter(e->e.getCreator().getId().equals(userDTO.getId())).map(event->{
             return new EventDTO(event.getName(), event.getDescription(),event.getDate(), event.getCreator().getId(), event.getPlace().getId());
-        }).stream().toList();
+        }).toList();
+
     }
 }

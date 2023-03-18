@@ -17,11 +17,6 @@ public interface EventRepository extends JpaRepository<Event, Long> {
 
     Optional<Event> findFirstById(Long id);
 
-    @Modifying
-    @Transactional
-    @Query(value = "select * from Event ", nativeQuery = true)
-    Optional<Event> getAll();
-
 
     @Modifying
     @Transactional
