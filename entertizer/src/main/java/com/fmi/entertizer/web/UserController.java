@@ -65,5 +65,10 @@ public class UserController {
         return userService.friendRequests(map.get("id"));
     }
 
+    @RequestMapping(value = "/friends/delete", method = RequestMethod.DELETE)
+    public void delFriend(@RequestBody Map<String, Long> payload){
+        userService.removeFriend(payload.get("userId"), payload.get("friendId"));
+    }
+
 
 }
