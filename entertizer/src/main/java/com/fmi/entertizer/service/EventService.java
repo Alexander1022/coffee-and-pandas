@@ -28,5 +28,7 @@ public interface EventService {
 
     List<EventDTO> viewEventsCreatedBy(UserDTO userDTO);
 
+    List<EventDTO> eventsImInvitedTo(UserDTO userDTO);
+
     List<EventDTO> eventsInTheNext7Days();
 }
