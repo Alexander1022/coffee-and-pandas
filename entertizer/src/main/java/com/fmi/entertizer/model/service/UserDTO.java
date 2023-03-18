@@ -21,6 +21,7 @@ public class UserDTO {
         this.email = email;
         this.password = password;
     }
+    public UserDTO(){}
 
     public Long getId() {
         return id;
