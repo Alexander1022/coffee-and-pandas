@@ -13,7 +13,7 @@ import { Checkbox } from './Checkbox';
 
 //main_place = SOFIA
 
-const Markers = () => {
+const Markers = ({ onMarkerSelect }) => {
 
     const DefaultIcon = L.icon({
         iconUrl: icon
@@ -25,16 +25,16 @@ const Markers = () => {
     const { legend, setSelected } = useLegend()
     const { places } = usePlaces();
 
-
-    console.log('legend', legend);
-    console.log('places', places);
-
     return (
         <div>
             {
                 legend.map((item) => {
                     return item.selected && places && places[item.name] && places[item.name].map((place) => {
-                        return <Marker key={place.geometry.coordinates} position={[place.geometry.coordinates[1], place.geometry.coordinates[0]]} iconUrl={DefaultIcon} />
+                        return <Marker key={place.geometry.coordinates} position={[place.geometry.coordinates[1], place.geometry.coordinates[0]]} iconUrl={DefaultIcon} eventHandlers={{
+                            click: (e) => {
+                                onMarkerSelect(true);
+                            },
+                        }} />
                     })
                 })
             }

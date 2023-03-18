@@ -5,6 +5,8 @@ import SignIn from './components/SignIn';
 import TOS from './components/TOS';
 import Map from './components/Map';
 import './index.css';
+import { AddEvent } from './components/AddEvent';
+import { AddEventPage } from './components/AddEventPage';
 
 const Main = () => {
     return (         
@@ -15,6 +17,7 @@ const Main = () => {
           <Route path='/signin' element={<SignIn/>} />
           <Route path='/tos' element={<TOS/>} />
           <Route path='/map' element={<Map/>} />
+          <Route path='/event' element={<AddEventPage/>} />
       </Routes>
     );
 }
