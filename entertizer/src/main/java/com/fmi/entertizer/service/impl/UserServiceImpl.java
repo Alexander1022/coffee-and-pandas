@@ -145,13 +145,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserDTO> friendRequests(Long id){
         User user = this.userRepository.getUserById(id).orElse(null);
-        List<UserDTO> friendRequests = new ArrayList<>();
-        user.getFriends().stream().forEach(f->{
-            if(f.getStatus() == Status.PENDING_RECEIVED){
-                friendRequests.add(modelMapper.map(f.getSecondUser(), UserDTO.class));
-            }
-        });
-        return friendRequests;
+        if(user != null){
+            List<UserDTO> friendRequests = new ArrayList<>();
+            user.getFriends().forEach(f->{
+                if(f.getStatus() == Status.PENDING_RECEIVED){
+                    friendRequests.add(modelMapper.map(f.getSecondUser(), UserDTO.class));
+                }
+            });
+            return friendRequests;
+        }
+        return null;
     }
 
     @Override
