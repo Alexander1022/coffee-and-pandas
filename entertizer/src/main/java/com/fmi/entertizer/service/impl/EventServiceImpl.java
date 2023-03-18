@@ -54,7 +54,7 @@ public class EventServiceImpl implements EventService {
         User user = this.userRepository.findFirstById(userDTO.getId()).orElse(null);
         if(user == null) return null;
         Event event = new Event(eventDTO.getName(), eventDTO.getDescription(), eventDTO.getDate(), user, place);
-        this.eventRepository.save(event); //TODO: check for uniqueness of event
+        if(this.eventRepository.findFirstById(eventDTO.getId()).isEmpty()) this.eventRepository.save(event);
         UserEvent userEvent = new UserEvent(user, event, Status.ACCEPTED);
         this.userEventRepository.save(userEvent);
         return eventDTO;

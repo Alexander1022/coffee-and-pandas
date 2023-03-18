@@ -139,6 +139,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public List<UserDTO> viewFriends(UserDTO userDTO){
+        User user = this.userRepository.getUserById(userDTO.getId()).orElse(null);
+        List<UserDTO> friendRequests = new ArrayList<>();
+        user.getFriends().stream().forEach(f->{
+            if(f.getStatus() == Status.ACCEPTED){
+                friendRequests.add(modelMapper.map(f.getSecondUser(), UserDTO.class));
+            }
+        });
+        return friendRequests;
+    }
+    @Override
     public void friendRequestInteraction(UserDTO userSentTo, UserDTO userSentFrom, boolean accepted){
         User user = this.userRepository.getUserById(userSentTo.getId()).orElse(null);
         if(accepted){
@@ -160,8 +171,7 @@ public class UserServiceImpl implements UserService {
         });
         return searchResults;
     }
-//TODO: add show friends
-    //TODO: add view friend requests
+
     private void throwExceptionIfUserExist(String email) {
         User userWithEmail = this.userRepository.findFirstByEmail(email).orElse(null);
         if (userWithEmail != null) {
