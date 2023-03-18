@@ -1,10 +1,17 @@
 package com.fmi.entertizer.web;
+import com.fmi.entertizer.error.UserNotFoundException;
 import com.fmi.entertizer.model.service.UserDTO;
+import com.fmi.entertizer.model.service.UserRegistrationDTO;
+import com.fmi.entertizer.service.JwtService;
 import com.fmi.entertizer.service.UserService;
 import com.fmi.entertizer.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.Authenticator;
 import java.util.List;
 
 @RestController
@@ -13,6 +20,13 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    private JwtService jwtService;
+
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
     @RequestMapping("/all")
     public List<UserDTO> getUsers(){
         return userService.getAllUsers();
@@ -39,5 +53,15 @@ public class UserController {
         return userService.loginUser(userDTO);
     }
 
+    @RequestMapping( value = "/auth", method = RequestMethod.POST)
+    public String authAndGetToken(@RequestBody UserRegistrationDTO authRequest){
+        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
+        if(authentication.isAuthenticated()){
+            return jwtService.generateToken(authRequest.getEmail());
+        }
+        else {
+            throw new UserNotFoundException("Invalid user request!");
+        }
 
+    }
 }
