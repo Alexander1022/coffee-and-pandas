@@ -143,8 +143,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserDTO> viewFriends(UserDTO userDTO){
-        User user = this.userRepository.getUserById(userDTO.getId()).orElse(null);
+    public List<UserDTO> viewFriends(Long id){
+        User user = this.userRepository.getUserById(id).orElse(null);
         List<UserDTO> friendRequests = new ArrayList<>();
         user.getFriends().stream().forEach(f->{
             if(f.getStatus() == Status.ACCEPTED){

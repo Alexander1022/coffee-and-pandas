@@ -25,7 +25,7 @@ public interface UserService {
 
     List<UserDTO> friendRequests(UserDTO userDTO);
 
-    List<UserDTO> viewFriends(UserDTO userDTO);
+    List<UserDTO> viewFriends(Long id);
 
     void friendRequestInteraction(UserDTO userSentTo, UserDTO userSentFrom, boolean accepted);
 
