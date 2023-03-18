@@ -23,6 +23,8 @@ public interface UserService {
 
     UserDTO addFriend(UserDTO userDTO, UserDTO userFriend);
 
+    List<UserDTO> friendRequests(UserDTO userDTO);
+
     List<UserDTO> searchResults(String search);
 
     UserDTO removeFriend(UserDTO userDTO, UserDTO userFriend);

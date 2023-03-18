@@ -1,6 +1,7 @@
 package com.fmi.entertizer.model.entity.enums;
 
 public enum Status {
-    PENDING,
+    PENDING_SENT,
+    PENDING_RECEIVED,
     ACCEPTED
 }

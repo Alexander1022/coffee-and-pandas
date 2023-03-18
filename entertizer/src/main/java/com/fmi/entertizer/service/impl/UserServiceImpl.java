@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserService {
     public String loginUser(UserDTO userDTO){
         User user = this.userRepository.findFirstByEmail(userDTO.getEmail()).orElse(null);
         if (user == null) return "No such user";
-        if(!user.getPassword().equals(bCryptPasswordEncoder.encode(userDTO.getPassword()))){
+        if(!bCryptPasswordEncoder.matches(userDTO.getPassword(), user.getPassword())){
             return "Wrong password";
         }
         return "Success";
@@ -107,7 +107,8 @@ public class UserServiceImpl implements UserService {
         User user = this.userRepository.findFirstById(userDTO.getId()).orElse(null);
         if (user==null) return null;
         User friendUser = user.getFriends().stream().filter(u -> u.getSecondUser().getId().equals(userFriend.getId())).findFirst().get().getSecondUser();
-        user.getFriends().add(new Friend(user, friendUser, Status.ACCEPTED));
+        user.getFriends().add(new Friend(user, friendUser, Status.PENDING_SENT));
+        friendUser.getFriends().add(new Friend(friendUser, user, Status.PENDING_RECEIVED));
         this.userRepository.save(user);
         return modelMapper.map(friendUser, UserDTO.class);
     }
@@ -125,6 +126,25 @@ public class UserServiceImpl implements UserService {
         return userFriend;
     }
 
+    @Override
+    public List<UserDTO> friendRequests(UserDTO userDTO){
+        User user = this.userRepository.getUserById(userDTO.getId()).orElse(null);
+        List<UserDTO> friendRequests = new ArrayList<>();
+        user.getFriends().stream().forEach(f->{
+            if(f.getStatus() == Status.PENDING_RECEIVED){
+                friendRequests.add(modelMapper.map(f.getSecondUser(), UserDTO.class));
+            }
+        });
+        return friendRequests;
+    }
+
+    public boolean friendRequestInteraction(UserDTO userSentTo, UserDTO userSentFrom, boolean accepted){
+        User user = this.userRepository.getUserById(userSentTo.getId()).orElse(null);
+        if(accepted){
+            user.getFriends().stream().filter(f->f.getId().equals(userSentFrom.getId())).findFirst().get().setStatus(Status.ACCEPTED);
+        }
+        return false;
+    }
     @Override
     public List<UserDTO> searchResults(String search){
         List<User> allUsers = this.userRepository.getAll().stream().toList();
