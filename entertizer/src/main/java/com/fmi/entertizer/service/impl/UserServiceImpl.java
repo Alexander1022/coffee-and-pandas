@@ -172,12 +172,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public void friendRequestInteraction(Long userSentTo, Long userSentFrom, boolean accepted){
         User user = this.userRepository.getUserById(userSentTo).orElse(null);
+        User user2 = this.userRepository.getUserById(userSentFrom).orElse(null);
         if(accepted){
             user.getFriends().stream().filter(f->f.getId().equals(userSentFrom)).findFirst().get().setStatus(Status.ACCEPTED);
+            user2.getFriends().stream().filter(f->f.getId().equals(userSentTo)).findFirst().get().setStatus(Status.ACCEPTED);
         } else {
             removeFriend(userSentTo, userSentFrom);
         }
         this.userRepository.save(user);
+        this.userRepository.save(user2);
     }
     @Override
     public List<UserDTO> searchResults(String search){
