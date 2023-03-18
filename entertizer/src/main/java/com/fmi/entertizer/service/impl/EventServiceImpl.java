@@ -118,4 +118,7 @@ public class EventServiceImpl implements EventService {
         }).toList();
 
     }
+
+    //TODO: recent events
+
 }

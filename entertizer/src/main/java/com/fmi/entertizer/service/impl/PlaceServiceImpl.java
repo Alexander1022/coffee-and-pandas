@@ -59,4 +59,6 @@ public class PlaceServiceImpl implements PlaceService {
         }
         return placeDTO;
     }
+
+    //TODO: add reviews
 }
