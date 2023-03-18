@@ -55,7 +55,7 @@ public class UserController {
         return userService.viewFriends(id);
     }
 
-    @RequestMapping(value = "/friends/add/pending", method = RequestMethod.POST)
+    @RequestMapping(value = "/friends/add", method = RequestMethod.POST)
     public FriendDTO addFriend(@RequestBody Map<String, Long> payload){
         return userService.addFriend(payload.get("userId1"), payload.get("userId2"));
     }
