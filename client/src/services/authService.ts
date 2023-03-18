@@ -6,8 +6,6 @@ const BACKEND_PORT:string | undefined = process.env.REACT_APP_API_PORT;
 const API_URL:string = `http://${BACKEND_URL}:${BACKEND_PORT}/users/`;
 
 export const register = (firstName: string, lastName: string, email: string, password: string) => {
-    console.log('connecting to: ' + API_URL + 'register');
-    console.log('Ivo: ' + process.env.REACT_APP_IVO);
     return axios.post(API_URL + 'add', {
         firstName,
         lastName,
@@ -17,8 +15,6 @@ export const register = (firstName: string, lastName: string, email: string, pas
 };
 
 export const login = (email: string, password: string) => {
-    console.log('connecting to: ' + API_URL + 'login');
-
     return axios.post(API_URL + 'login', {
         email,
         password
