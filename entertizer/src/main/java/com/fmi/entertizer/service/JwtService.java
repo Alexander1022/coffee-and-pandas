@@ -1,7 +1,9 @@
 package com.fmi.entertizer.service;
 
+import com.google.gson.Gson;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.gson.io.GsonSerializer;
 import io.jsonwebtoken.security.Keys;
 import org.hibernate.annotations.Comment;
 import org.springframework.stereotype.Component;
@@ -24,11 +26,13 @@ public class JwtService  {
     }
 
     private String createToken(Map<String ,Object> claims, String email){
+        Gson gson = new Gson();
          return Jwts.builder()
                  .setClaims(claims)
                  .setSubject(email)
                  .setIssuedAt(new Date(System.currentTimeMillis()))
                  .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30))
+                 .serializeToJsonWith(new GsonSerializer(gson))
                  .signWith(SignatureAlgorithm.HS256, getSignKey()).compact();
     }
 
