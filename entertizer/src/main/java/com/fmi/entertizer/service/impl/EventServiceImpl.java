@@ -38,6 +38,7 @@ public class EventServiceImpl implements EventService {
         Place place = this.placeRepository.findFirstByCoordinates(placeDTO.getCoordinates()).orElse(null);
         if(place == null){
             place = new Place(placeDTO.getPlaceType(), placeDTO.getDescription(), placeDTO.getName(), placeDTO.getCoordinates());
+            this.placeRepository.save(place);
         }
         User user = this.userRepository.findFirstById(userDTO.getId()).orElse(null);
         if(user == null) return null;
@@ -47,7 +48,12 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public EventDTO updateEvent(UserDTO userDTO, EventDTO eventDTO) {
-        return null;
+    public EventDTO updateEvent(EventDTO eventDTO) {
+        Event event = this.eventRepository.findFirstById(eventDTO.getId()).orElse(null);
+        if(event==null) return null;
+        event.setDescription(eventDTO.getDescription());
+        event.setName(eventDTO.getName());
+        this.eventRepository.save(event);
+        return eventDTO;
     }
 }

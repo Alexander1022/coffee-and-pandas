@@ -8,9 +8,19 @@ public class EventDTO {
 
     private LocalDate date;
 
+    private Long id;
     private Long creatorId;
 
     private Long placeId;
+
+    public EventDTO(String name, String description, LocalDate date, Long id, Long creatorId, Long placeId) {
+        this.name = name;
+        this.description = description;
+        this.date = date;
+        this.id = id;
+        this.creatorId = creatorId;
+        this.placeId = placeId;
+    }
 
     public EventDTO(String name, String description, LocalDate date, Long creatorId, Long placeId) {
         this.name = name;
@@ -18,6 +28,14 @@ public class EventDTO {
         this.date = date;
         this.creatorId = creatorId;
         this.placeId = placeId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

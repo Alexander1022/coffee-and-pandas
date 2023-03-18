@@ -14,11 +14,5 @@ public interface EventService {
 
     EventDTO addEvent(UserDTO userDTO, EventDTO eventDTO, PlaceDTO placeDTO);
 
-    public EventDTO updateEvent(UserDTO userDTO, EventDTO eventDTO);
-
-
-
-
-
-
+    EventDTO updateEvent(EventDTO eventDTO);
 }

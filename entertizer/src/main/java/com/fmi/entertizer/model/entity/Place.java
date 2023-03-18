@@ -7,23 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name="place")
-public class Place extends BaseEntity{
-
-
+@Table(name = "place")
+public class Place extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private PlaceType type;
 
     @Column
     private String description;
-
     @Column
     private String name;
 
     @Column(nullable = false)
     private String coordinates;
 
-    @OneToOne(mappedBy ="place")
+    @OneToOne(mappedBy = "place")
     private Event event;
 
     @OneToMany(
