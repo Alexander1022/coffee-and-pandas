@@ -18,6 +18,12 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @RequestMapping("/{id}")
+    public UserDTO getMeById(@PathVariable Long id){
+        return userService.findById(id);
+    }
+
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public void addUser(@RequestBody UserDTO user){
          userService.registerNewUser(user);
