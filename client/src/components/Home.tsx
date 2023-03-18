@@ -1,6 +1,7 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
 import { useState } from 'react';
 import MapImage from '../assets/map.png';
+import FMIImage from '../assets/fmi.jpeg';
 
 const Home = () => {
     const [search, setSearch] = useState<string>('');
@@ -48,10 +49,14 @@ const Home = () => {
                         <h1 className='font-bold text-3xl text-white mb-3'>Search on map</h1>
                         <img className='h-auto max-w-full' src={MapImage} />
                     </div>
+
+                    <div className='m-6 p-6 bg-white rounded-xl shadow-xl justify-center text-center bg-gradient-to-tl from-[#F39C12] to-[#FF8C00]'>
+                        <h1 className='font-bold text-3xl text-white mb-3'>Recent events</h1>
+                        <img className='h-auto max-w-full' src={FMIImage} />
+                    </div>
                 </div>
 
                 <div className='flex flex-col'>
-
                 </div>
 
                 <div className='flex flex-col'>
