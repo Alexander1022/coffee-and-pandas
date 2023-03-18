@@ -133,18 +133,20 @@ public class UserServiceImpl implements UserService {
         User user = this.userRepository.findFirstById(userId).orElse(null);
         User userFriend = this.userRepository.findFirstById(userFriendId).orElse(null);
         if (user==null) return null;
-        int friendIndex = IntStream.range(0, user.getFriends().size())
-                .filter(i -> user.getFriends().get(i).getSecondUser().getEmail().equals(userFriend.getEmail()))
-                .findFirst()
-                .orElse(-1);
-        System.out.println(friendIndex);
-        user.getFriends().remove(friendIndex);
-        int friendIndex2 = IntStream.range(0, user.getFriends().size())
-                .filter(i -> userFriend.getFriends().get(i).getSecondUser().getEmail().equals(user.getEmail()))
-                .findFirst()
-                .orElse(-1);
-        System.out.println(friendIndex2);
-        userFriend.getFriends().remove(friendIndex2);
+//        int friendIndex = IntStream.range(0, user.getFriends().size())
+//                .filter(i -> user.getFriends().get(i).getSecondUser().getEmail().equals(userFriend.getEmail()))
+//                .findFirst()
+//                .orElse(-1);
+        user.getFriends().remove(userFriend);
+//        System.out.println(friendIndex);
+//        user.getFriends().remove(friendIndex);
+//        int friendIndex2 = IntStream.range(0, user.getFriends().size())
+//                .filter(i -> userFriend.getFriends().get(i).getSecondUser().getEmail().equals(user.getEmail()))
+//                .findFirst()
+//                .orElse(-1);
+//        System.out.println(friendIndex2);
+//        userFriend.getFriends().remove(friendIndex2);
+        userFriend.getFriends().remove(user);
         this.userRepository.save(user);
         return modelMapper.map(userFriend, UserDTO.class);
     }
