@@ -6,16 +6,16 @@ public class EventDTO {
     private String name;
     private String description;
 
-    private LocalDate dueDate;
+    private LocalDate date;
 
-    private int creatorId;
+    private Long creatorId;
 
-    private int placeId;
+    private Long placeId;
 
-    public EventDTO(String name, String description, LocalDate dueDate, int creatorId, int placeId) {
+    public EventDTO(String name, String description, LocalDate date, Long creatorId, Long placeId) {
         this.name = name;
         this.description = description;
-        this.dueDate = dueDate;
+        this.date = date;
         this.creatorId = creatorId;
         this.placeId = placeId;
     }
@@ -36,27 +36,27 @@ public class EventDTO {
         this.description = description;
     }
 
-    public LocalDate getDueDate() {
-        return dueDate;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
-    public int getCreatorId() {
+    public Long getCreatorId() {
         return creatorId;
     }
 
-    public void setCreatorId(int creatorId) {
+    public void setCreatorId(Long creatorId) {
         this.creatorId = creatorId;
     }
 
-    public int getPlaceId() {
+    public Long getPlaceId() {
         return placeId;
     }
 
-    public void setPlaceId(int placeId) {
+    public void setPlaceId(Long placeId) {
         this.placeId = placeId;
     }
 }

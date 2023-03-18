@@ -10,6 +10,8 @@ public interface UserRepository extends CrudRepository<User, Long> {
     Optional<User> findFirstByEmail(String email);
     Optional<User> findFirstByCoordinates(String coordinates);
 
+    Optional<User> findFirstById(Long id);
+
     Optional<User> getAll();
 
     Optional<User> getUserById(Long id);

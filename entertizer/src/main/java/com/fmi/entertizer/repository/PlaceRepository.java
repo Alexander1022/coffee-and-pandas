@@ -8,5 +8,7 @@ import java.util.Optional;
 
 @Repository
 public interface PlaceRepository extends JpaRepository<Place, Long> {
-    Optional<Place> getPlaceById(Long id);
+    Optional<Place> findFirstById(Long id);
+
+    Optional<Place> findFirstByCoordinates(String coordinates);
 }

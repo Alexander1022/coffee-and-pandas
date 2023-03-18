@@ -15,7 +15,7 @@ public class Event extends BaseEntity{
     @Column
     private String description;
     @Column(nullable = false)
-    private LocalDate dueDate;
+    private LocalDate date;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -32,19 +32,19 @@ public class Event extends BaseEntity{
     )
     private List<UserEvent> eventUser = new ArrayList<>();
 
-    public Event(String name, String description, LocalDate dueDate, User creator, Place place, List<UserEvent> eventUser) {
+    public Event(String name, String description, LocalDate date, User creator, Place place, List<UserEvent> eventUser) {
         this.name = name;
         this.description = description;
-        this.dueDate = dueDate;
+        this.date = date;
         this.creator = creator;
         this.place = place;
         this.eventUser = eventUser;
     }
 
-    public Event(String name, String description, LocalDate dueDate, User creator, Place place) {
+    public Event(String name, String description, LocalDate date, User creator, Place place) {
         this.name = name;
         this.description = description;
-        this.dueDate = dueDate;
+        this.date = date;
         this.creator = creator;
         this.place = place;
     }
@@ -68,12 +68,12 @@ public class Event extends BaseEntity{
         this.description = description;
     }
 
-    public LocalDate getDueDate() {
-        return dueDate;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public List<UserEvent> getEventUser() {

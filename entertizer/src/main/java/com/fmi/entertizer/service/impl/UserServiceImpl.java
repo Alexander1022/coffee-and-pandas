@@ -95,7 +95,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDTO> getUserFriends(UserDTO userDTO) {
-        User user = this.userRepository.getUserById(userDTO.getId()).orElse(null);
+        User user = this.userRepository.findFirstById(userDTO.getId()).orElse(null);
         if(user == null) return null;
         List<UserDTO> userFriends = new ArrayList<>();
         user.getFriends().forEach(u -> userFriends.add(modelMapper.map(u, UserDTO.class)));
@@ -104,7 +104,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO addFriend(UserDTO userDTO, UserDTO userFriend) {
-        User user = this.userRepository.getUserById(userDTO.getId()).orElse(null);
+        User user = this.userRepository.findFirstById(userDTO.getId()).orElse(null);
         if (user==null) return null;
         User friendUser = user.getFriends().stream().filter(u -> u.getSecondUser().getId().equals(userFriend.getId())).findFirst().get().getSecondUser();
         user.getFriends().add(new Friend(user, friendUser, Status.ACCEPTED));
@@ -126,7 +126,7 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public UserDTO removeFriend(UserDTO userDTO, UserDTO userFriend) {
-        User user = this.userRepository.getUserById(userDTO.getId()).orElse(null);
+        User user = this.userRepository.findFirstById(userDTO.getId()).orElse(null);
         if (user==null) return null;
         int friendIndex = IntStream.range(0, user.getFriends().size())
                 .filter(i -> user.getFriends().get(i).getSecondUser().getEmail().equals(userFriend.getEmail()))

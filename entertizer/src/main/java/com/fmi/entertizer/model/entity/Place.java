@@ -32,6 +32,13 @@ public class Place extends BaseEntity{
     )
     private List<UserPlace> placeUser = new ArrayList<>();
 
+    public Place(PlaceType type, String description, String name, String coordinates) {
+        this.type = type;
+        this.description = description;
+        this.name = name;
+        this.coordinates = coordinates;
+    }
+
     public Place(PlaceType type, String description, String coordinates) {
         this.type = type;
         this.description = description;
