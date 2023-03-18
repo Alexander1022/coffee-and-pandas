@@ -1,23 +1,21 @@
-package com.fmi.entertizer.service;
+package com.fmi.entertizer.service.impl;
 
 import com.google.gson.Gson;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.gson.io.GsonSerializer;
 import io.jsonwebtoken.security.Keys;
-import org.hibernate.annotations.Comment;
 import org.springframework.stereotype.Component;
 
 
 import java.security.Key;
-import java.security.Signature;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class JwtService  {
+public class JwtServiceImpl {
 
     public static final String SECRET = "4A404E635266556A586E3272357538782F413F4428472B4B6250645367566B59";
     public String generateToken(String email){
