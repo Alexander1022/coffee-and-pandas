@@ -1,5 +1,7 @@
 package com.fmi.entertizer.web;
 import com.fmi.entertizer.model.service.UserDTO;
+import com.fmi.entertizer.model.service.UserRegistrationDTO;
+import com.fmi.entertizer.service.JwtService;
 import com.fmi.entertizer.service.UserService;
 import com.fmi.entertizer.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,10 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserServiceImpl userService;
+
+    @Autowired
+    private JwtService jwtService;
+
     @RequestMapping("/all")
     public List<UserDTO> getUsers(){
         return userService.getAllUsers();
@@ -39,5 +45,8 @@ public class UserController {
         return userService.loginUser(userDTO);
     }
 
-
+    @RequestMapping( value = "/auth", method = RequestMethod.POST)
+    public String authAndGetToken(@RequestBody UserRegistrationDTO authRequest){
+    return jwtService.generateToken(authRequest.getEmail());
+    }
 }
