@@ -11,7 +11,7 @@ import { useState } from 'react';
 const center = [42.696071, 23.330727];
 
 function Map() {
-    const [markerSelected, setMarkerSelected] = useState(false);
+    const [markerSelected, setMarkerSelected] = useState(null);
 
     return (
         <div>
@@ -24,7 +24,7 @@ function Map() {
                 />
 
                 <Markers onMarkerSelect={setMarkerSelected} />
-                {markerSelected && <BuildingInfo></BuildingInfo>}
+                {markerSelected && <BuildingInfo info={markerSelected}></BuildingInfo>}
             </MapContainer>
         </div>
 
