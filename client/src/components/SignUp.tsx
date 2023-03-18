@@ -71,7 +71,7 @@ const SignUp = () => {
   };
 
     return (
-    <div className="grid grid-cols-2 gap-4 bg-gradient-to-tl from-[#F9AC04] to-[#550E63]">
+    <div className="grid grid-cols-2 gap-4 bg-gradient-to-tl from-[#F9AC04] to-[#F39C12]">
       <div className="flex flex-col justify-center min-h-screen max-w text-center">
         <div className='flex flex-col mt-36 mb-10'>
           <h1 className='text-white mb-3 text-6xl font-bold'>
@@ -91,7 +91,7 @@ const SignUp = () => {
           </p>
 
           <Link to="/signin">
-            <button className='text-xl text-white border-2 py-2 px-10 border-white rounded-full drop-shadow-lg mt-3 hover:bg-white hover:text-black'>
+            <button className='text-xl text-white border-2 py-2 px-10 border-white rounded-full drop-shadow-lg mt-3 hover:bg-white hover:text-[#FF5722]'>
               Log In
             </button>
           </Link>
@@ -99,24 +99,24 @@ const SignUp = () => {
       </div>
 
       <div className="flex flex-col justify-center min-h-screen max-w text-center bg-gradient-to-b from-[#D9D9D9] backdrop-blur-3xl ">
-        <h1 className='text-[#550E63] text-5xl font-bold mb-10'>
+        <h1 className='text-[#FF5722] text-5xl font-bold mb-10'>
           Sign Up
         </h1>
 
         <form className='flex flex-col content-center justify-center space-y-4 px-24 flex-wrap' onSubmit={handleSubmit}>
-          <hr className="w-120 h-0.5 border-[#550E63]"/>
-            <input required type="name" value={fName} onChange={handleChangeFName} className="mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="First Name" />
-            <input required type="name" value={lName} onChange={handleChangeLName} className="mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="Last Name" />
-            <input required type="email" value={email} onChange={handleChangeEmail} className="w-full mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="Email" />
-            <input required type="password" minLength={8} value={password} onChange={handleChangePassword} className="mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="Password" />
-            <input required type="password" minLength={8} value={rPassword} onChange={handleChangeRPassword} className="mt-10 opacity-50 px-3 py-2 bg-[#550E63] rounded-full max-w-sm outline-none text-white" placeholder="Confirm password" />
-            <hr className="w-120 h-0.5 border-[#550E63]"/>
+          <hr className="w-120 h-0.5 border-white"/>
+            <input required type="name" value={fName} onChange={handleChangeFName} className="mt-10 opacity-50 px-3 py-2 bg-white rounded-full max-w-sm outline-none text-black" placeholder="First Name" />
+            <input required type="name" value={lName} onChange={handleChangeLName} className="mt-10 opacity-50 px-3 py-2 bg-white rounded-full max-w-sm outline-none text-black" placeholder="Last Name" />
+            <input required type="email" value={email} onChange={handleChangeEmail} className="w-full mt-10 opacity-50 px-3 py-2 bg-white rounded-full max-w-sm outline-none text-black" placeholder="Email" />
+            <input required type="password" minLength={8} value={password} onChange={handleChangePassword} className="mt-10 opacity-50 px-3 py-2 bg-white rounded-full max-w-sm outline-none text-black" placeholder="Password" />
+            <input required type="password" minLength={8} value={rPassword} onChange={handleChangeRPassword} className="mt-10 opacity-50 px-3 py-2 bg-white rounded-full max-w-sm outline-none text-black" placeholder="Confirm password" />
+            <hr className="w-120 h-0.5 border-white"/>
             <div className='flex flex-row justify-center space-x-3'>
               <input required type="checkbox" className='outline-none'/>
               <label className='text-white text-sm'>I have read and agree with the <Link to="/tos">Terms of service</Link></label>
             </div>
 
-            <button type="submit" className='text-xl text-white bg-[#550E63] py-2 px-10 rounded-full mt-2 drop-shadow-lgx hover:text-[#550E63] hover:bg-white'>
+            <button type="submit" className='text-xl text-white bg-[#FF5722] py-2 px-10 rounded-full mt-2 drop-shadow-lgx hover:text-[#FF5722] hover:bg-white'>
               Sign Up
           </button>
         </form>     
