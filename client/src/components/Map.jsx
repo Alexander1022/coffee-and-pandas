@@ -20,7 +20,7 @@ function Map() {
     return (
         <div>
             <NavBar />
-            <MapContainer center={center} zoom={16} scrollWheelZoom={true} style={ customStyle }>
+            <MapContainer center={center} zoom={16} scrollWheelZoom={true} style={customStyle}>
 
                 <TileLayer
                     url="https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=UfhKDL4DZ5XjnlKLlq3N"
@@ -29,12 +29,11 @@ function Map() {
 
                 <Markers onMarkerSelect={setMarkerSelected} />
                 {
-                    markerSelected && 
-                    <BuildingInfo info={markerSelected}>
-                    
-                    </BuildingInfo>
+                    markerSelected &&
+                    <BuildingInfo info={markerSelected} onClose={() => setMarkerSelected(null)} />
                 }
             </MapContainer>
+
         </div>
 
     );

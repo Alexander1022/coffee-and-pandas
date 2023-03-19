@@ -15,13 +15,8 @@ import { Checkbox } from './Checkbox';
 
 const Markers = ({ onMarkerSelect }) => {
 
-    const DefaultIcon = L.icon({
-        iconUrl: icon
-    });
-
-    L.Marker.prototype.options.icon = DefaultIcon;
-
     document.getElementsByClassName("leaflet-control-zoom")[0].style.left = "12rem";
+    document.getElementsByClassName("leaflet-control-zoom")[0].style.display = "none";
 
     const { legend, setSelected } = useLegend()
     const { places } = usePlaces();
@@ -31,9 +26,8 @@ const Markers = ({ onMarkerSelect }) => {
             {
                 legend.map((item) => {
                     return item.selected && places && places[item.name] && places[item.name].map((place) => {
-                        return <Marker key={place.geometry.coordinates} position={[place.geometry.coordinates[1], place.geometry.coordinates[0]]} iconUrl={DefaultIcon} eventHandlers={{
-                            click: (e) => {
-                                console.log(e);
+                        return <Marker key={place.geometry.coordinates} position={[place.geometry.coordinates[1], place.geometry.coordinates[0]]} icon={item.icon} eventHandlers={{
+                            click: () => {
                                 onMarkerSelect(place);
                             },
                         }} />
