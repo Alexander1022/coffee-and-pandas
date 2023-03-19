@@ -2,11 +2,34 @@ import React from 'react';
 import { NavBar } from './NavBar';
 import { useState } from 'react';
 import FriendComponent from './FriendComponents';
+import EventInterface from '../types/event.type';
+import { getCurrentUser } from '../services/authService';
 
 export const AddEventPage = () => {
+  const [eventName, setEventName] = useState('');
+  const [eventPlace, setEventPlace] = useState('');
+  const [eventDescription, setEventDescription] = useState('');
+  const [eventDate, setEventDate] = useState('');
+  const [eventTime, setEventTime] = useState('');
+  const [eventLocation, setEventLocation] = useState('');
+
   const [inputType, setInputType] = useState('text');
   const [inputType2, setInputType2] = useState('text');
   
+  const initialEvent: EventInterface = {
+    id: null,
+    name: '',
+    description: '',
+    date: '',
+    creatorId: '',
+    placeDto: {
+      name: '',
+      description: '',
+      placeType: '',
+      coordinates: '',
+    }
+
+  }
   const hadnleChangeInputType = () => {
     setInputType("date");
   };
@@ -14,6 +37,26 @@ export const AddEventPage = () => {
   const hadnleChangeInputType2 = () => {
     setInputType2("time");
   };
+
+  const handleNameChange = (e: any) => {
+    setEventName(e.target.value);
+  }
+
+  const handleDescriptionChange = (e: any) => {
+    setEventDescription(e.target.value);
+  }
+
+  const handleDateChange = (e: any) => {
+    setEventDate(e.target.value);
+  }
+
+  const handleTimeChange = (e: any) => {
+    setEventTime(e.target.value);
+  }
+  
+  const handleSumbit = (e:any) => {
+    e.preventDefault();
+  }
 
   return (
     <>
@@ -35,16 +78,16 @@ export const AddEventPage = () => {
 
           <div className="bg-transparent w-1/2 h-full">
             <h1 className='text-white text-4xl text-center my-6'>Create a new event</h1>
-            <form className='flex flex-col space-y-6 w-full items-center'>
-              <input type="text" placeholder="Place" className='outline-none rounded-xl h-12 p-2 w-full'/>
-              <input type="text" placeholder="Title" className='outline-none rounded-xl h-12 p-2 w-full'/>
-              <input type="text" placeholder="Description" className='outline-none rounded-xl p-2 w-full h-36'/>
+            <form onSubmit={handleSumbit} className='flex flex-col space-y-6 w-full items-center'>
+              <input type="text" value={eventPlace} placeholder="Place" className='outline-none rounded-xl h-12 p-2 w-full'/>
+              <input type="text" value={eventName} placeholder="Title" className='outline-none rounded-xl h-12 p-2 w-full'/>
+              <input type="text" value={eventDescription} placeholder="Description" className='outline-none rounded-xl p-2 w-full h-36'/>
               <div className='flex flex-rol w-full space-x-2'>
-                <input type={inputType} className='outline-none rounded-xl h-12 p-2 w-screen' placeholder='Date' onFocus={hadnleChangeInputType}/>
-                <input type={inputType2} className='outline-none rounded-xl h-12 p-2 w-screen' placeholder="Time" onFocus={hadnleChangeInputType2}/>  
+                <input type={inputType} value={eventDate} onChange={handleDateChange} className='outline-none rounded-xl h-12 p-2 w-screen' placeholder='Date' onFocus={hadnleChangeInputType}/>
+                <input type={inputType2} value={eventTime} onChange={handleTimeChange} className='outline-none rounded-xl h-12 p-2 w-screen' placeholder="Time" onFocus={hadnleChangeInputType2}/>  
               </div>
 
-              <button className='text-center py-3 w-36 rounded-full bg-[#FF5722] text-white'>
+              <button type="submit" className='text-center py-3 w-36 rounded-full bg-[#FF5722] text-white'>
                 Create
               </button>
             </form>

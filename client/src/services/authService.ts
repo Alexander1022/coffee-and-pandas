@@ -33,7 +33,7 @@ export const getCurrentUser = () => {
     const userToken = localStorage.getItem('userID');
     
     if (userToken) {
-        return JSON.parse(userToken);
+        return userToken;
     }
 
     return null;
