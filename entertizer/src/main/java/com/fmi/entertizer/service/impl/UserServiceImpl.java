@@ -133,16 +133,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void removeFriend(Long userId, Long userFriendId) {
-//        this.friendRepository.findAll().forEach(f->{
-//            if((f.getFirstUser().getId().equals(userId) && f.getSecondUser().getId().equals(userFriendId)) ||
-//                    (f.getFirstUser().getId().equals(userFriendId) && f.getSecondUser().getId().equals(userId))){
-//                this.friendRepository.delete(f);
-
         Friend friend = this.friendRepository.findByFirstUserIdAndSecondUserId(userId, userFriendId).orElse(null);
         this.friendRepository.delete(friend);
         Friend friend1 = this.friendRepository.findByFirstUserIdAndSecondUserId(userFriendId, userId).orElse(null);
         this.friendRepository.delete(friend1);
-        // return modelMapper.map(userFriend, UserDTO.class);
     }
 
     @Override
