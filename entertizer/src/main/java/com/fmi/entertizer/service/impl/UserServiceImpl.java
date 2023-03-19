@@ -124,6 +124,9 @@ public class UserServiceImpl implements UserService {
         user.getFriends().add(new Friend(user, friendUser, Status.PENDING_SENT));
         friendUser.getFriends().add(new Friend(friendUser, user, Status.PENDING_RECEIVED));
         this.userRepository.save(user);
+        this.userRepository.save(friendUser);
+        this.friendRepository.save(new Friend(user, friendUser, Status.PENDING_SENT));
+        this.friendRepository.save(new Friend(friendUser, user, Status.PENDING_RECEIVED));
 
         return new FriendDTO(userId1, userId2, Status.PENDING_SENT);
     }
