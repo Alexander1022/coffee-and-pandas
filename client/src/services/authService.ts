@@ -40,5 +40,6 @@ export const getCurrentUser = () => {
 }
 
 export const logout = () => {
+    console.log("I am looging out the user. Yay!");
     localStorage.removeItem('userID');
 }

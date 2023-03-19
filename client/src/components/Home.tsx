@@ -5,6 +5,7 @@ import EventCard from './EventCard';
 import FriendComponent from './FriendComponents';
 import CenteredCard from './CenteredCard';
 import { NavBar } from './NavBar';
+import { Link } from 'react-router-dom';
 
  const Home = () => {
     const [search, setSearch] = useState<string>('');
@@ -28,14 +29,16 @@ import { NavBar } from './NavBar';
 
             <div className="p-5 bg-[#333333] h-full">
                 <div className="flex flex-row auto-cols-max gap-x-2 justify-center">
-                    
+
                     <div className="bg-transparent w-1/4 space-y-10 h-full">
                         <div className='border-0 p-5 bg-[#F6970D] rounded-3xl'>
                             <div className='bg-[#F6970D]'>
                                 <h1 className='text-center font-bold text-3xl text-white'>Search on map</h1>
                             </div>
                             <div className='mt-10 bg-[#AF741E]'>
-                                <img src={ MapImage } />
+                                <Link to="/map">
+                                    <img src={ MapImage } />
+                                </Link>
                             </div>
                         </div>
 

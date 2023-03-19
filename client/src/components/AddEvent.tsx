@@ -1,12 +1,10 @@
 import { useState } from 'react';
-import { Dialog } from '@headlessui/react';
+import { Link } from 'react-router-dom';
 
-const AddEvent = (props:any) => {
-    let [isOpen, setIsOpen] = useState(true);
-
+const AddEvent = (props:any) => { 
     return (
-        <button style = {{position: 'fixed', width: '8rem' , height: '2.5rem' , backgroundColor: 'orange' , bottom: '1rem', borderRadius: '20px'}}>
-          Event
+        <button className="text-white bg-[#ff5722] " style = {{position: 'fixed', width: '8rem' , color: 'white', height: '2.5rem' , bottom: '1rem', borderRadius: '20px'}}>
+            Add Event
         </button>   
     );
 }

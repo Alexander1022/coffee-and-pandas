@@ -17,7 +17,7 @@ export const AddEventPage = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar loc="map"/>
 
       <div className="p-5 bg-[#333333] h-full">
         <div className="flex flex-row auto-cols-max gap-x-2 justify-center">
@@ -35,11 +35,11 @@ export const AddEventPage = () => {
 
           <div className="bg-transparent w-1/2 h-full">
             <h1 className='text-white text-4xl text-center my-6'>Create a new event</h1>
-            <form className='flex flex-col space-y-6 items-center'>
-              <input type="text" placeholder="Place" className='outline-none rounded-xl h-12 p-2 w-64'/>
-              <input type="text" placeholder="Title" className='outline-none rounded-xl h-12 p-2 w-64'/>
-              <input type="text" placeholder="Description" className='outline-none rounded-xl p-2 w-64 h-36'/>
-              <div className='flex flex-row	w-64 space-x-2'>
+            <form className='flex flex-col space-y-6 w-full items-center'>
+              <input type="text" placeholder="Place" className='outline-none rounded-xl h-12 p-2 w-full'/>
+              <input type="text" placeholder="Title" className='outline-none rounded-xl h-12 p-2 w-full'/>
+              <input type="text" placeholder="Description" className='outline-none rounded-xl p-2 w-full h-36'/>
+              <div className='flex flex-rol w-full space-x-2'>
                 <input type={inputType} className='outline-none rounded-xl h-12 p-2 w-screen' placeholder='Date' onFocus={hadnleChangeInputType}/>
                 <input type={inputType2} className='outline-none rounded-xl h-12 p-2 w-screen' placeholder="Time" onFocus={hadnleChangeInputType2}/>  
               </div>

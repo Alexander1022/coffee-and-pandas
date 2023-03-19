@@ -19,7 +19,7 @@ function Map() {
 
     return (
         <div>
-            <NavBar />
+            <NavBar loc="home"/>
             <MapContainer center={center} zoom={16} scrollWheelZoom={true} style={customStyle}>
 
                 <TileLayer
