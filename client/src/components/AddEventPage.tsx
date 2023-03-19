@@ -4,10 +4,10 @@ import { useState } from 'react';
 import FriendComponent from './FriendComponents';
 import EventInterface from '../types/event.type';
 import { getCurrentUser } from '../services/authService';
+import { addEvent } from '../services/eventService';
 
 export const AddEventPage = () => {
   const [eventName, setEventName] = useState('');
-  const [eventPlace, setEventPlace] = useState('');
   const [eventDescription, setEventDescription] = useState('');
   const [eventDate, setEventDate] = useState('');
   const [eventTime, setEventTime] = useState('');
@@ -21,7 +21,7 @@ export const AddEventPage = () => {
     name: '',
     description: '',
     date: '',
-    creatorId: '',
+    creatorId: '1',
     placeDto: {
       name: '',
       description: '',
@@ -53,10 +53,39 @@ export const AddEventPage = () => {
   const handleTimeChange = (e: any) => {
     setEventTime(e.target.value);
   }
+
+  const handleLocationChange = (e: any) => {
+    setEventLocation(e.target.value);
+  }
   
   const handleSumbit = (e:any) => {
     e.preventDefault();
+
+    const event: EventInterface = {
+      id: null,
+      name: eventName,
+      description: eventDescription,
+      date: eventDate,
+      creatorId: getCurrentUser(),
+      placeDto: {
+        name: eventLocation,
+        description: eventDescription,
+        placeType: 'CINEMA',
+        coordinates: eventLocation
+      }
   }
+  console.log("event" + JSON.stringify(event));
+
+  addEvent(event).then(
+    (response) => {
+      console.log(response.data);
+    },
+
+    (error) => {
+      console.log(error);
+    }
+  );
+}
 
   return (
     <>
@@ -79,9 +108,9 @@ export const AddEventPage = () => {
           <div className="bg-transparent w-1/2 h-full">
             <h1 className='text-white text-4xl text-center my-6'>Create a new event</h1>
             <form onSubmit={handleSumbit} className='flex flex-col space-y-6 w-full items-center'>
-              <input type="text" value={eventPlace} placeholder="Place" className='outline-none rounded-xl h-12 p-2 w-full'/>
-              <input type="text" value={eventName} placeholder="Title" className='outline-none rounded-xl h-12 p-2 w-full'/>
-              <input type="text" value={eventDescription} placeholder="Description" className='outline-none rounded-xl p-2 w-full h-36'/>
+              <input type="text" value={eventLocation} onChange={handleLocationChange} placeholder="Place" className='outline-none rounded-xl h-12 p-2 w-full'/>
+              <input type="text" value={eventName} onChange={handleNameChange} placeholder="Title" className='outline-none rounded-xl h-12 p-2 w-full'/>
+              <input type="text" value={eventDescription} onChange={handleDescriptionChange} placeholder="Description" className='outline-none rounded-xl p-2 w-full h-36'/>
               <div className='flex flex-rol w-full space-x-2'>
                 <input type={inputType} value={eventDate} onChange={handleDateChange} className='outline-none rounded-xl h-12 p-2 w-screen' placeholder='Date' onFocus={hadnleChangeInputType}/>
                 <input type={inputType2} value={eventTime} onChange={handleTimeChange} className='outline-none rounded-xl h-12 p-2 w-screen' placeholder="Time" onFocus={hadnleChangeInputType2}/>  

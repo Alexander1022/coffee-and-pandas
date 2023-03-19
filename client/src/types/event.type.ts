@@ -3,7 +3,7 @@ export default interface EventInterface {
     name: string,
     description: string,
     date: string,
-    creatorId: string,
+    creatorId: string | null,
     placeDto: {
         name: string
         description: string,

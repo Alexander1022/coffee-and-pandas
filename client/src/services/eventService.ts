@@ -14,7 +14,7 @@ export const addEvent = (newEvent: EventInterface) => {
         description: newEvent.description,
         date: newEvent.date,
         creatorId: newEvent.creatorId,
-        placeDto: {
+        placeDTO: {
             name: newEvent.placeDto.name,
             description: newEvent.placeDto.description,
             placeType: newEvent.placeDto.placeType,
