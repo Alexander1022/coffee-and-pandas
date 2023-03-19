@@ -25,54 +25,53 @@ public class UserController {
     @RequestMapping("/all")
     public List<UserDTO> getUsers(){
         return userService.getAllUsers();
-    }
+    }   //OK
 
     @RequestMapping("/{id}")
     public UserDTO getMeById(@PathVariable Long id){
         return userService.findById(id);
-    }
+    }   //OK
 
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @RequestMapping(value = "/register", method = RequestMethod.POST)                   //Probably
     public void addUser(@RequestBody UserDTO user){
          userService.registerNewUser(user);
     }
 
-    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT)                  //NO - user doesn't update, it stays the same
 
     public void updateUser(@RequestBody UserDTO user, @PathVariable Long id){
         userService.updateUserFirstAndLastNames(user, id);
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = {"application/json"})
+    @RequestMapping(value = "/login", method = RequestMethod.POST, consumes = {"application/json"})             //OK
     public Map<String,String> login(@RequestBody UserDTO userDTO){
         return userService.loginUser(userDTO);
     }
-
 
     @RequestMapping(value = "/{id}/friends")
     public List<UserDTO> showFriends(@PathVariable Long id){
         return userService.viewFriends(id);
     }
 
-    @RequestMapping(value = "/friends/add", method = RequestMethod.POST)
+    @RequestMapping(value = "add/friends", method = RequestMethod.POST)
     public FriendDTO addFriend(@RequestBody Map<String, Long> payload){
-        return userService.addFriend(payload.get("userId"), payload.get("friendId"));
+        return userService.addFriend(payload.get("user_id"), payload.get("friend_id"));
     }
 
     @RequestMapping(value = "/friends/confirm", method = RequestMethod.POST)
     public List<UserDTO> confirmFriends(@RequestBody Map<String, Long> map){
-        return userService.friendRequests(map.get("userId"));
+        return userService.friendRequests(map.get("user_id"));
     }
 
     @RequestMapping(value = "/friends/delete", method = RequestMethod.DELETE)
     public void delFriend(@RequestBody Map<String, Long> payload){
-        userService.removeFriend(payload.get("userId"), payload.get("friendId"));
+        userService.removeFriend(payload.get("user_id"), payload.get("friend_id"));
     }
 
     @RequestMapping(value = "/friends/view/accepted", method = RequestMethod.POST)
     public List<UserDTO> viewFriendsWithStatusAccepted(@RequestBody Map<String, Long> payload){
-        return userService.viewFriends(payload.get("userId"));
+        return userService.viewFriends(payload.get("user_id"));
     }
 
 
