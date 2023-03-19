@@ -7,11 +7,11 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "friends")
 public class Friend extends BaseEntity {
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "first_user_id", referencedColumnName = "id")
     User firstUser;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinColumn(name = "second_user_id", referencedColumnName = "id")
     User secondUser;
 

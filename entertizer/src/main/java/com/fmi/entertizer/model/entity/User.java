@@ -88,7 +88,7 @@ public class User extends BaseEntity {
     @OneToMany(
             fetch = FetchType.EAGER,
             mappedBy = "user",
-            cascade = CascadeType.ALL
+            cascade = CascadeType.PERSIST
     )
     private List<UserPlace> userPlace = new ArrayList<>();
 
