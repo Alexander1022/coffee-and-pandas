@@ -13,6 +13,7 @@ import com.fmi.entertizer.repository.PlaceRepository;
 import com.fmi.entertizer.repository.UserEventRepository;
 import com.fmi.entertizer.repository.UserRepository;
 import com.fmi.entertizer.service.EventService;
+import jdk.swing.interop.SwingInterOpUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -52,8 +53,7 @@ public class EventServiceImpl implements EventService {
     }
 
     private LocalDate convertDate(String text){
-        List<Integer> nums = Arrays.stream(text.split("/.")).map(Integer::parseInt).toList();
-
+        List<Integer> nums = Arrays.stream(text.split("\\.")).map(Integer::parseInt).toList();
         return LocalDate.of(nums.get(2), nums.get(1), nums.get(0));
     }
     @Override
@@ -65,8 +65,11 @@ public class EventServiceImpl implements EventService {
         }
         User user = this.userRepository.findFirstById(userId).orElse(null);
         if(user == null) return null;
+        System.out.println("DATETETETETET" + convertDate(eventDTO.getDate()));
         Event event = new Event(eventDTO.getName(), eventDTO.getDescription(), convertDate(eventDTO.getDate()), user, place);
-        if(this.eventRepository.findFirstById(eventDTO.getId()).isEmpty()) this.eventRepository.saveAndFlush(event);
+        if(this.eventRepository.findFirstById(eventDTO.getId()).isEmpty()) {
+            this.eventRepository.saveAndFlush(event);
+        }
         UserEvent userEvent = new UserEvent(user, event, Status.ACCEPTED);
         this.userEventRepository.save(userEvent);
         return eventDTO;

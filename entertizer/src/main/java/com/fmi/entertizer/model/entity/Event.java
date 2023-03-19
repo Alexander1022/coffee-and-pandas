@@ -1,6 +1,7 @@
 package com.fmi.entertizer.model.entity;
 
 import jakarta.persistence.*;
+import org.modelmapper.internal.bytebuddy.implementation.bind.annotation.Default;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,8 +15,8 @@ public class Event extends BaseEntity{
 
     @Column
     private String description;
-    @Column
-    private LocalDate date;
+    @Column(columnDefinition="TIMESTAMP default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP")
+    private LocalDate date = LocalDate.now();
 
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -50,6 +51,7 @@ public class Event extends BaseEntity{
     }
 
     public Event() {
+        this.date = LocalDate.now();
     }
 
     public User getCreator() {
