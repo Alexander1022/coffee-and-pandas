@@ -44,7 +44,7 @@ public class PlaceSort {
         StringBuilder str = new StringBuilder(512);
         for(Map.Entry<Long,Place> e:placesSorted.entrySet())
         {
-            str.append("PLACES INPUT").append(e.getValue().getName()).append(' ').append(e.getKey()).append('\n');
+            str.append(e.getValue().getName()).append(' ').append(e.getKey()).append('\n');
         }
         return str.toString();
     }
@@ -63,7 +63,7 @@ public class PlaceSort {
             }
 
             Point p =  new Point(list.get(2),list.get(3));
-            Place place = new Place(placeType,list.get(0),list.get(1),list.get(2)+", "+list.get(3));
+            Place place = new Place(placeType,list.get(0),list.get(1),list.get(2)+" "+list.get(3));
             pointList.addPoint(p);
             placesSorted.put((long)pointList.getCurrentPos().distance(p),place);
         }
