@@ -47,7 +47,7 @@ public class EventController {
 
     @RequestMapping(value = "/inviteFriends", method = RequestMethod.POST)
     public EventDTO inviteFriends(@RequestBody UserEventDTO userEventDTO){
-        return eventService.addFriendToEvent(userEventDTO.getUserId() ,userEventDTO.getEventId());
+        return eventService.addFriendToEvent(userEventDTO.getUserId(), userEventDTO.getEventId());
     }
 
     @RequestMapping(value = "/recent")

@@ -14,6 +14,7 @@ import com.fmi.entertizer.repository.UserEventRepository;
 import com.fmi.entertizer.repository.UserRepository;
 import com.fmi.entertizer.service.EventService;
 import jdk.swing.interop.SwingInterOpUtils;
+import org.hibernate.loader.NonUniqueDiscoveredSqlAliasException;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -113,7 +114,11 @@ public class EventServiceImpl implements EventService {
         Event event = this.eventRepository.findFirstById(eventDTOId).orElse(null);
         UserEvent userEvent = new UserEvent(user, event, Status.PENDING_SENT);
         this.userEventRepository.save(userEvent);
-        return modelMapper.map(event, EventDTO.class);
+        return new EventDTO(event.getName(),
+                event.getDescription(),
+                event.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
+                event.getCreator().getId(),
+                new PlaceDTO(event.getPlace().getType(), event.getPlace().getDescription(), event.getPlace().getName(), event.getPlace().getCoordinates()));
     }
 
     @Override

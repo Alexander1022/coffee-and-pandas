@@ -29,7 +29,7 @@ public class Event extends BaseEntity{
 
     @OneToMany(
             mappedBy = "event",
-            cascade = CascadeType.MERGE, fetch = FetchType.EAGER
+            cascade = CascadeType.MERGE, fetch = FetchType.LAZY
     )
     private List<UserEvent> eventUser = new ArrayList<>();
 

@@ -69,7 +69,7 @@ public class User extends BaseEntity {
     }
 
     public List<UserEvent> getUserEvent() {
-        return userEvent;
+        return this.userEvent;
     }
 
     public void setUserEvent(List<UserEvent> userEvent) {
@@ -94,7 +94,7 @@ public class User extends BaseEntity {
 
     @OneToMany(
             mappedBy = "user",
-            cascade = CascadeType.MERGE, fetch = FetchType.EAGER
+            cascade = CascadeType.MERGE, fetch = FetchType.LAZY
     )
     private List<UserEvent> userEvent = new ArrayList<>();
 
