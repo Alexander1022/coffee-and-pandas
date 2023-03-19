@@ -3,6 +3,7 @@ package com.fmi.entertizer.model.service;
 import java.time.LocalDate;
 
 public class EventDTO {
+
     private String name;
     private String description;
 

@@ -2,7 +2,7 @@ package com.fmi.entertizer.FileParser;
 
 import org.apache.tomcat.Jar;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.parameters.P;
+//import org.springframework.security.core.parameters.P;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -69,21 +69,7 @@ public class FIleParser {
                 prop = matcher.group();
                 switch (propertyMapping.get(prop))
                 {
-                    case 0:
-                    { /*  matcher = textPattern.matcher(line);
-                        if(matcher.find())
-                        {
-                            String c = matcher.group();
-                            matcher = textPattern2.matcher(c);
-                            if(matcher.find())
-                            {
-                                info.put(prop,matcher.group());
-                            }
-                        }
-                        break;
-                        */
-                    } // adress
-
+                    case 0:// adress
                     case 1:
                     {
                         matcher = textPattern.matcher(line);
@@ -98,18 +84,7 @@ public class FIleParser {
                         }
                         break;
                     } //name
-                    case 2:
-                    {
-                        /*
-
-                        matcher = coordPattern.matcher(line);
-                        if(matcher.find())
-                        {
-                            info.put(prop,matcher.group());
-                        }
-                        break;
-                        */
-                    } //lat
+                    case 2://lat
                     case 3:
                     {
                         matcher = coordPattern.matcher(tokens[1]);
@@ -145,18 +120,18 @@ public class FIleParser {
                             for(String s:properties)
                             {
                                 locationsRaw.getLast().add(info.get(s));
-                                System.out.printf("New Order %s %s\n",s,info.get(s));
+                             //   System.out.printf("New Order %s %s\n",s,info.get(s));
                             }
+                            /*
                             for(Map.Entry<String,String> e:info.entrySet())
                             {
                                // locationsRaw.getLast().add(e.getValue());
                                 System.out.printf("I AM HERE %s %s\n",e.getKey(),e.getValue());
-                            }System.out.println();
+                            }System.out.println();*/
                         }
                         break;
                     } //categories
                 }
-                System.out.print("\n");
             }
 
         }

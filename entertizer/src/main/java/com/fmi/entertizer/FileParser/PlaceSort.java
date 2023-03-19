@@ -10,23 +10,43 @@ import java.util.Map;
 import java.util.TreeMap;
 import com.fmi.entertizer.coordinates.Point;
 import com.fmi.entertizer.model.entity.enums.PlaceType;
+import com.sun.source.tree.Tree;
 
 public class PlaceSort {
     private String filePath = "entertizer/src/main/java/com/fmi/entertizer/FileParser/jsonTest.txt";
     private FIleParser fIleParser;
     private TreeMap<Long,Place> placesSorted;
     private PointList pointList;
-    public PlaceSort(Point p)
+    public PlaceSort(String filePath,Point p)
     {
+        this.filePath = filePath;
         placesSorted = new TreeMap<>();
         pointList = new PointList();
         pointList.setCurrentPos(p);
         fIleParser = new FIleParser(filePath);
         input();
+        System.out.print(printSort());
+    }
+    public void setFilePath(String filePath)
+    {
+        this.filePath = filePath;
+    }
+    public String getFilePath()
+    {
+        return filePath;
+    }
+    public TreeMap<Long,Place> getSortedPoints()
+    {
+        return placesSorted;
+    }
+    public String printSort()
+    {
+        StringBuilder str = new StringBuilder(512);
         for(Map.Entry<Long,Place> e:placesSorted.entrySet())
         {
-            System.out.println("PLACES INPUT "+e.getValue().getName()+" "+e.getKey());
+            str.append("PLACES INPUT").append(e.getValue().getName()).append(' ').append(e.getKey()).append('\n');
         }
+        return str.toString();
     }
     public void input()
     {

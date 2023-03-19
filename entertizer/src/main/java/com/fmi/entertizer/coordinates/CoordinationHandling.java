@@ -6,32 +6,17 @@ import java.util.TreeMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.lang.Math.abs;
+
 
 public class CoordinationHandling {
-    public static final double EARTH_RADIUS = 6371;
+    public static final double EARTH_RADIUS = 6371000;
     private Coordinates startingPoint;
     private PointList pointList;
     public static void main(String[] args) {
         //Coordinates coordinates = new Coordinates("49°30'60 N, 123°30'03 W");
         //Coordinates coordinates = new Coordinates("49°30'60 N");
         PointList pL = new PointList("3°0'40 N, 3°0'40 N","49°30'00\"N N, 123°30'0 W, 102°20'03 W, 164°20'03 W");
-
-    }
-    public boolean setStartingPoint(Coordinates startingPoint)
-    {
-        return false;
-    }
-    public CoordinationHandling(Coordinates A,Coordinates B)
-    {
-
-    }
-    public CoordinationHandling(String input)
-    {
-
-    }
-    private void parseInput(String input)
-    {
-        String coordinates[] =input.split(", ");
 
     }
 }
@@ -48,13 +33,13 @@ class Coordinates
         setDegree(degree);
         setHours(hours);
         setMinutes(minutes);
-        System.out.print(printDMS());
+    //    System.out.print(printDMS());
     }
     public Coordinates(String coordinates)
     {
         parseCoordinates(coordinates);
-        System.out.print(printDMS());
-        System.out.print(printDD());
+      //  System.out.print(printDMS());
+      //  System.out.print(printDD());
     }
     public double getDecDegree()
     {
@@ -103,8 +88,22 @@ class Coordinates
         DMSToDD(degree,hours,minutes);
         return true;
     }
+    private void DDtoDMS(double decDegree)
+    {
+        degree =(int)decDegree%180;
+        decDegree-=degree;
+        hours = (int)(decDegree*60)%60;
+        decDegree = abs(decDegree-hours);
+        minutes= (int)(decDegree*60)%60;
+    }
     private void parseCoordinates(String coordinates) // dopishi parse
     {
+        if(coordinates.contains("."))
+        {
+            decDegree = Double.parseDouble(coordinates);
+            DDtoDMS(decDegree);
+            return;
+        }
         Pattern pattern = Pattern.compile("\\d+");
         Matcher matcher = pattern.matcher(coordinates);
         if(!setDMS(matcher))

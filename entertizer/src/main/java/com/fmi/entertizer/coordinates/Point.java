@@ -24,7 +24,7 @@ public class Point {
     }
 
     public String print() {
-        return lat.printDD() + lon.printDD();
+        return lat.printDD()+(lat.getDecDegree()>0?"N":"S") + lon.printDD() + (lat.getDecDegree()>0?"E":"W");
     }
 
     public Coordinates getLat() {
