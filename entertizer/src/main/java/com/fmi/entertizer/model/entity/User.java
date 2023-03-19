@@ -98,7 +98,7 @@ public class User extends BaseEntity {
     )
     private List<UserEvent> userEvent = new ArrayList<>();
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "firstUser", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "firstUser", cascade = CascadeType.PERSIST)
     private List<Friend> friends = new ArrayList<>();
 
     public String getFirstName() {
