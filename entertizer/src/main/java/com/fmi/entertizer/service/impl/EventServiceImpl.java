@@ -65,7 +65,7 @@ public class EventServiceImpl implements EventService {
         }
         User user = this.userRepository.findFirstById(userId).orElse(null);
         if(user == null) return null;
-        System.out.println("DATETETETETET" + convertDate(eventDTO.getDate()));
+
         Event event = new Event(eventDTO.getName(), eventDTO.getDescription(), convertDate(eventDTO.getDate()), user, place);
         if(this.eventRepository.findFirstById(eventDTO.getId()).isEmpty()) {
             this.eventRepository.saveAndFlush(event);
@@ -108,12 +108,12 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    public EventDTO addFriendToEvent(UserDTO userFriendDTO, EventDTO eventDTO){
-        User user = this.userRepository.findFirstById(userFriendDTO.getId()).orElse(null);
-        Event event = this.eventRepository.findFirstById(eventDTO.getId()).orElse(null);
+    public EventDTO addFriendToEvent(Long userFriendId, Long eventDTOId){
+        User user = this.userRepository.findFirstById(userFriendId).orElse(null);
+        Event event = this.eventRepository.findFirstById(eventDTOId).orElse(null);
         UserEvent userEvent = new UserEvent(user, event, Status.PENDING_SENT);
         this.userEventRepository.save(userEvent);
-        return eventDTO;
+        return modelMapper.map(event, EventDTO.class);
     }
 
     @Override

@@ -21,7 +21,7 @@ public interface EventService {
 
     List<EventDTO> searchResults(String search);
 
-    EventDTO addFriendToEvent(UserDTO userFriendDTO, EventDTO eventDTO);
+    EventDTO addFriendToEvent(Long userFriendId, Long eventDTOId);
 
     List<EventDTO> viewMyEvents(UserDTO userDTO);
 

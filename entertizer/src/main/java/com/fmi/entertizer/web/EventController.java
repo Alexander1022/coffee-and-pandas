@@ -18,7 +18,7 @@ public class EventController {
     @Autowired
     private EventServiceImpl eventService;
 
-    @RequestMapping(value = "/myevents", method = RequestMethod.POST)
+    @RequestMapping(value = "/myevents", method = RequestMethod.GET)
     public List<EventDTO> getMyEvents(@RequestBody UserDTO user) {
         return eventService.viewMyEvents(user);
     }
@@ -46,8 +46,8 @@ public class EventController {
     }
 
     @RequestMapping(value = "/inviteFriends", method = RequestMethod.POST)
-    public EventDTO inviteFriends(@RequestBody UsrEventDTO usrEventDTO){
-        return eventService.addFriendToEvent(usrEventDTO.getUserDTO(),usrEventDTO.getEventDTO());
+    public EventDTO inviteFriends(@RequestBody UserEventDTO userEventDTO){
+        return eventService.addFriendToEvent(userEventDTO.getUserId() ,userEventDTO.getEventId());
     }
 
     @RequestMapping(value = "/recent")
