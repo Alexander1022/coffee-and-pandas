@@ -5,7 +5,9 @@ const AddEvent = (props:any) => {
     let [isOpen, setIsOpen] = useState(true);
 
     return (
-        <button></button>   
+        <button style = {{position: 'fixed', width: '8rem' , height: '2.5rem' , backgroundColor: 'orange' , bottom: '1rem', borderRadius: '20px'}}>
+          Event
+        </button>   
     );
 }
 
