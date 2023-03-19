@@ -1,14 +1,16 @@
 package com.fmi.entertizer.model.service;
 
+import com.fmi.entertizer.model.entity.enums.Status;
+
 public class UserEventDTO {
     private Long userId;
     private Long eventId;
-    private Long status;
+    private Status status;
 
     public UserEventDTO() {
     }
 
-    public UserEventDTO(Long userId, Long eventId, Long status) {
+    public UserEventDTO(Long userId, Long eventId, Status status) {
         this.userId = userId;
         this.eventId = eventId;
         this.status = status;
@@ -30,11 +32,11 @@ public class UserEventDTO {
         this.eventId = eventId;
     }
 
-    public Long getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(Long status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 }
