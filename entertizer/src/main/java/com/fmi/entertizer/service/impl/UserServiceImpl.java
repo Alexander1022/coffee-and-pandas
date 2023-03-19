@@ -193,6 +193,7 @@ public class UserServiceImpl implements UserService {
         allUsers.forEach(u -> {
             if(u.getFirstName().contains(search) || u.getLastName().contains(search)){
                 UserDTO userDTO = modelMapper.map(u, UserDTO.class);
+                userDTO.setPassword("");
                 searchResults.add(userDTO);
             }
         });
