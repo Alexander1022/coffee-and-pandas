@@ -36,31 +36,29 @@ public class PlaceServiceImpl implements PlaceService {
     }
 
     @Override
-    public PlaceDTO ratePlace(UserDTO userDTO, PlaceDTO placeDTO, int rating) {
-        UserPlace userPlace = new UserPlace(modelMapper.map(userDTO, User.class), modelMapper.map(placeDTO, Place.class));
+    public void ratePlace(Long userId, Long placeId,  int rating) {
+        UserPlace userPlace = new UserPlace(modelMapper.map(this.userRepository.findFirstById(userId).orElse(null), User.class), modelMapper.map(this.placeRepository.findFirstById(placeId).orElse(null), Place.class));
         userPlace.setRating(rating);
-        UserPlace current = this.userPlaceRepository.findUserPlaceByUserIdAndPlaceId(userDTO.getId(), this.placeRepository.findFirstByCoordinates(placeDTO.getCoordinates()).get().getId()).orElse(null);
+        UserPlace current = this.userPlaceRepository.findUserPlaceByUserIdAndPlaceId(userId, placeId).orElse(null);
         if (current != null) {
             current.setRating(rating);
             this.userPlaceRepository.save(current);
         } else {
             this.userPlaceRepository.save(userPlace);
         }
-        return placeDTO;
     }
 
     @Override
-    public PlaceDTO addARevueToAPlace(UserDTO userDTO, PlaceDTO placeDTO, String review) {
-        UserPlace userPlace = new UserPlace(modelMapper.map(userDTO, User.class), modelMapper.map(placeDTO, Place.class));
+    public void addARevueToAPlace(Long userId, Long placeId, String review) {
+        UserPlace userPlace = new UserPlace(modelMapper.map(this.userRepository.findFirstById(userId).orElse(null), User.class), modelMapper.map(this.placeRepository.findFirstById(placeId), Place.class));
         userPlace.setReview(review);
-        UserPlace current = this.userPlaceRepository.findUserPlaceByUserIdAndPlaceId(userDTO.getId(), this.placeRepository.findFirstByCoordinates(placeDTO.getCoordinates()).get().getId()).orElse(null);
+        UserPlace current = this.userPlaceRepository.findUserPlaceByUserIdAndPlaceId(userId, placeId).orElse(null);
         if (current != null) {
             current.setReview(review);
             this.userPlaceRepository.save(current);
         } else {
             this.userPlaceRepository.save(userPlace);
         }
-        return placeDTO;
     }
 
     @Override
