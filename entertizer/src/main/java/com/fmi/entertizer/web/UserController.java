@@ -46,8 +46,7 @@ public class UserController { //10.108.4.54:8080
          userService.registerNewUser(user);
     }
 
-    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT)                  //TODO: user doesn't update, it stays the same
-
+    @RequestMapping(value = "update/{id}", method = RequestMethod.PUT)
     public void updateUser(@RequestBody UserDTO user, @PathVariable Long id){
         userService.updateUserFirstAndLastNames(user, id);
     }

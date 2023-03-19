@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface PlaceService {
 
-    PlaceDTO ratePlace(UserDTO userDTO, PlaceDTO placeDTO, int rating);
+    public void ratePlace(Long userId, Long placeId,  int rating);
 
-    PlaceDTO addARevueToAPlace(UserDTO userDTO, PlaceDTO placeDTO, String revue);
+    public void addARevueToAPlace(Long userId, Long placeId, String review);
 
     List<String> allUserReviewsByPlace(Long placeId);
 }
