@@ -83,6 +83,10 @@ const SignUp = () => {
             Chat with friends, play games, or collaborate on new projects
             Join now and discover amazing opportunities waiting for you!
           </p>
+
+          <p className='text-white mx-5 px-20 py-5 font-extrabold'>
+            Have fun, anytime, anywhere!
+          </p>
         </div>
 
         <div className='pt-10'>

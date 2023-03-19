@@ -28,6 +28,7 @@ import { NavBar } from './NavBar';
 
             <div className="p-5 bg-[#333333] h-full">
                 <div className="flex flex-row auto-cols-max gap-x-2 justify-center">
+                    
                     <div className="bg-transparent w-1/4 space-y-10 h-full">
                         <div className='border-0 p-5 bg-[#F6970D] rounded-3xl'>
                             <div className='bg-[#F6970D]'>

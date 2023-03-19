@@ -33,7 +33,7 @@ const Markers = ({ onMarkerSelect }) => {
                     return item.selected && places && places[item.name] && places[item.name].map((place) => {
                         return <Marker key={place.geometry.coordinates} position={[place.geometry.coordinates[1], place.geometry.coordinates[0]]} iconUrl={DefaultIcon} eventHandlers={{
                             click: (e) => {
-                                console.log(e)
+                                console.log(e);
                                 onMarkerSelect(place);
                             },
                         }} />

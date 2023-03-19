@@ -12,9 +12,7 @@ const center = [42.696071, 23.330727];
 
 function Map() {
     const [markerSelected, setMarkerSelected] = useState(null);
-    const customStyle ={
-        // top: "20%",
-        // left: "20%",
+    const customStyle = {
         width: '100vw',
         height: '100vh'
     }
@@ -26,11 +24,16 @@ function Map() {
 
                 <TileLayer
                     url="https://api.maptiler.com/maps/streets-v2/256/{z}/{x}/{y}.png?key=UfhKDL4DZ5XjnlKLlq3N"
-                    attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+                    attribution='&copy; Entertizer</a></a>'
                 />
 
                 <Markers onMarkerSelect={setMarkerSelected} />
-                {markerSelected && <BuildingInfo info={markerSelected}></BuildingInfo>}
+                {
+                    markerSelected && 
+                    <BuildingInfo info={markerSelected}>
+                    
+                    </BuildingInfo>
+                }
             </MapContainer>
         </div>
 
