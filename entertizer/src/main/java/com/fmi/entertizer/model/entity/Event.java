@@ -14,21 +14,21 @@ public class Event extends BaseEntity{
 
     @Column
     private String description;
-    @Column(nullable = false)
+    @Column
     private LocalDate date;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User creator;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "place_id", referencedColumnName = "id")
     private Place place;
 
     @OneToMany(
             mappedBy = "event",
-            cascade = CascadeType.ALL
+            cascade = CascadeType.MERGE, fetch = FetchType.EAGER
     )
     private List<UserEvent> eventUser = new ArrayList<>();
 

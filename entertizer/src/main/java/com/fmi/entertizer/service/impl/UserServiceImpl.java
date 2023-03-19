@@ -171,8 +171,14 @@ public class UserServiceImpl implements UserService {
         User user = this.userRepository.getUserById(userSentTo).orElse(null);
         User user2 = this.userRepository.getUserById(userSentFrom).orElse(null);
         if(accepted){
-            user.getFriends().stream().filter(f->f.getId().equals(userSentFrom)).findFirst().get().setStatus(Status.ACCEPTED);
-            user2.getFriends().stream().filter(f->f.getId().equals(userSentTo)).findFirst().get().setStatus(Status.ACCEPTED);
+            user.getFriends().stream().filter(f->f.getSecondUser().getId().equals(userSentFrom))
+                    .findFirst()
+                    .get()
+                    .setStatus(Status.ACCEPTED);
+            user2.getFriends().stream().filter(f->f.getSecondUser().getId().equals(userSentTo))
+                    .findFirst()
+                    .get()
+                    .setStatus(Status.ACCEPTED);
         } else {
             removeFriend(userSentTo, userSentFrom);
         }

@@ -1,16 +1,19 @@
 package com.fmi.entertizer.model.service;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fmi.entertizer.model.entity.enums.PlaceType;
 
 public class PlaceDTO {
-    private PlaceType placeType;
+        private PlaceType placeType;
 
     private String description;
     private String name;
 
     private String coordinates;
 
-    public PlaceDTO(PlaceType placeType, String description, String name, String coordinates) {
+    @JsonCreator
+    public PlaceDTO(@JsonProperty("placeType") PlaceType placeType,@JsonProperty("description") String description,@JsonProperty("name") String name,@JsonProperty("coordinates") String coordinates) {
         this.placeType = placeType;
         this.description = description;
         this.name = name;

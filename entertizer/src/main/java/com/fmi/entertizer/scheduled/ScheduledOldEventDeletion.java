@@ -17,7 +17,7 @@ public class ScheduledOldEventDeletion {
         this.eventService = eventService;
     }
 
-    @Scheduled(cron = "0 0 1 * * *")
+    //@Scheduled(cron = "0 0 1 * * *")
     public void deleteOldEvents(){
         LOGGER.info("Deleting old events");
         this.eventService.deleteOldEvents();

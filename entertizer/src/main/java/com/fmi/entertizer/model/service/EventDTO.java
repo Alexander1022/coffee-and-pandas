@@ -2,40 +2,42 @@ package com.fmi.entertizer.model.service;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fmi.entertizer.model.entity.Place;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
-public class EventDTO {
+public class    EventDTO {
 
     private String name;
     private String description;
 
-    private LocalDate date;
+    private String date;
 
     private Long id;
     private Long creatorId;
 
-    private Long placeId;
+    private PlaceDTO placeDTO;
 
-    public EventDTO(String name, String description, LocalDate date, Long id, Long creatorId, Long placeId) {
+    public EventDTO(String name, String description, String date, Long id, Long creatorId, PlaceDTO placeDTO) {
         this.name = name;
         this.description = description;
         this.date = date;
         this.id = id;
         this.creatorId = creatorId;
-        this.placeId = placeId;
+        this.placeDTO = placeDTO;
     }
     @JsonCreator
     public EventDTO(@JsonProperty("name") String name,
                     @JsonProperty("description") String description,
-                    @JsonProperty("date") LocalDate date,
+                    @JsonProperty("date") String date,
                     @JsonProperty("creatorId") Long creatorId,
-                    @JsonProperty("placeId") Long placeId) {
+                    @JsonProperty("placeDTO") PlaceDTO placeDTO) {
         this.name = name;
         this.description = description;
         this.date = date;
         this.creatorId = creatorId;
-        this.placeId = placeId;
+        this.placeDTO = placeDTO;
     }
 
     public Long getId() {
@@ -62,11 +64,11 @@ public class EventDTO {
         this.description = description;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -78,11 +80,11 @@ public class EventDTO {
         this.creatorId = creatorId;
     }
 
-    public Long getPlaceId() {
-        return placeId;
+    public PlaceDTO getPlaceDTO() {
+        return placeDTO;
     }
 
-    public void setPlaceId(Long placeId) {
-        this.placeId = placeId;
+    public void setPlaceDTO(String placeCoordinates) {
+        this.placeDTO = placeDTO;
     }
 }

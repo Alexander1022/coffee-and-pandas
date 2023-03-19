@@ -1,15 +1,13 @@
 package com.fmi.entertizer.web;
 
-import com.fmi.entertizer.model.service.UsrEventDTO;
-import com.fmi.entertizer.model.service.UsrEventPlaceDTO;
-import com.fmi.entertizer.model.service.EventDTO;
-import com.fmi.entertizer.model.service.UserDTO;
+import com.fmi.entertizer.model.service.*;
 import com.fmi.entertizer.service.impl.EventServiceImpl;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3001")
@@ -31,8 +29,10 @@ public class EventController {
 //    }
 
     @RequestMapping(value = "/add", method=RequestMethod.POST)
-    public EventDTO addEvent(@RequestBody UsrEventPlaceDTO usrEventPlaceDTO){
-        return eventService.addEvent(usrEventPlaceDTO.getUserDTO(), usrEventPlaceDTO.getEventDTO(),usrEventPlaceDTO.getPlaceDTO());
+    public EventDTO addEvent(@RequestBody EventDTO eventDTO){
+        System.out.println(eventDTO.getDate());
+        System.out.println(eventDTO.getPlaceDTO().getCoordinates());
+        return eventService.addEvent(eventDTO.getCreatorId(), eventDTO, eventDTO.getPlaceDTO());
     }
 
     @RequestMapping(value = "/update", method=RequestMethod.PUT)

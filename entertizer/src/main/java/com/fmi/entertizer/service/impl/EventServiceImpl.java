@@ -16,9 +16,14 @@ import com.fmi.entertizer.service.EventService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.DateFormatter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -46,17 +51,22 @@ public class EventServiceImpl implements EventService {
         this.eventRepository.deleteEventsByDueDateBefore(LocalDate.now());
     }
 
+    private LocalDate convertDate(String text){
+        List<Integer> nums = Arrays.stream(text.split("/.")).map(Integer::parseInt).toList();
+
+        return LocalDate.of(nums.get(2), nums.get(1), nums.get(0));
+    }
     @Override
-    public EventDTO addEvent(UserDTO userDTO, EventDTO eventDTO, PlaceDTO placeDTO) {
+    public EventDTO addEvent(Long userId, EventDTO eventDTO, PlaceDTO placeDTO) {
         Place place = this.placeRepository.findFirstByCoordinates(placeDTO.getCoordinates()).orElse(null);
         if(place == null){
             place = new Place(placeDTO.getPlaceType(), placeDTO.getDescription(), placeDTO.getName(), placeDTO.getCoordinates());
-            this.placeRepository.save(place);
+            this.placeRepository.saveAndFlush(place);
         }
-        User user = this.userRepository.findFirstById(userDTO.getId()).orElse(null);
+        User user = this.userRepository.findFirstById(userId).orElse(null);
         if(user == null) return null;
-        Event event = new Event(eventDTO.getName(), eventDTO.getDescription(), eventDTO.getDate(), user, place);
-        if(this.eventRepository.findFirstById(eventDTO.getId()).isEmpty()) this.eventRepository.save(event);
+        Event event = new Event(eventDTO.getName(), eventDTO.getDescription(), convertDate(eventDTO.getDate()), user, place);
+        if(this.eventRepository.findFirstById(eventDTO.getId()).isEmpty()) this.eventRepository.saveAndFlush(event);
         UserEvent userEvent = new UserEvent(user, event, Status.ACCEPTED);
         this.userEventRepository.save(userEvent);
         return eventDTO;
@@ -87,7 +97,7 @@ public class EventServiceImpl implements EventService {
         List<EventDTO> searchResults = new ArrayList<>();
         allEvents.forEach(e->{
             if(e.getName().contains(search) || e.getDescription().contains(search)){
-                EventDTO eventDTO = new EventDTO(e.getName(), e.getDescription(), e.getDate(), e.getCreator().getId(), e.getPlace().getId());
+                EventDTO eventDTO = new EventDTO(e.getName(), e.getDescription(), e.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")), e.getCreator().getId(), modelMapper.map(e.getPlace(), PlaceDTO.class));
                 searchResults.add(eventDTO);
             }
         });
@@ -107,14 +117,14 @@ public class EventServiceImpl implements EventService {
     public List<EventDTO> viewMyEvents(UserDTO userDTO){
         return this.userEventRepository.findAllByUserId(userDTO.getId()).stream().map(ue->{
             Event event = ue.getEvent();
-            return new EventDTO(event.getName(), event.getDescription(),event.getDate() , event.getCreator().getId(), event.getPlace().getId());
+            return new EventDTO(event.getName(), event.getDescription(),event.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")), event.getCreator().getId(), modelMapper.map(event.getPlace(), PlaceDTO.class));
         }).toList();
     }
 
     @Override
     public List<EventDTO> viewEventsCreatedBy(UserDTO userDTO){
         return this.eventRepository.findAll().stream().filter(e->e.getCreator().getId().equals(userDTO.getId())).map(event->{
-            return new EventDTO(event.getName(), event.getDescription(),event.getDate(), event.getCreator().getId(), event.getPlace().getId());
+            return new EventDTO(event.getName(), event.getDescription(),event.getDate().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")), event.getCreator().getId(), modelMapper.map(event.getPlace(), PlaceDTO.class));
         }).toList();
 
     }

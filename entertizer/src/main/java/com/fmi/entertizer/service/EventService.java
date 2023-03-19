@@ -14,8 +14,7 @@ public interface EventService {
     @Transactional
     public void deleteOldEvents();
 
-    EventDTO addEvent(UserDTO userDTO, EventDTO eventDTO, PlaceDTO placeDTO);
-
+    public EventDTO addEvent(Long userId, EventDTO eventDTO, PlaceDTO placeDTO);
     EventDTO updateEvent(EventDTO eventDTO);
 
     EventDTO deleteEvent(EventDTO eventDTO);
