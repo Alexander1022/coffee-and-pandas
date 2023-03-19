@@ -1,5 +1,8 @@
 package com.fmi.entertizer.model.service;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDate;
 
 public class EventDTO {
@@ -22,7 +25,13 @@ public class EventDTO {
         this.placeId = placeId;
     }
 
-    public EventDTO(String name, String description, LocalDate date, Long creatorId, Long placeId) {
+    @JsonCreator
+    public EventDTO(@JsonProperty("name") String name,
+                    @JsonProperty("description") String description,
+                    @JsonProperty("date") LocalDate date,
+                    @JsonProperty("creatorId") Long creatorId,
+                    @JsonProperty("placeId") Long placeId) {
+
         this.name = name;
         this.description = description;
         this.date = date;
