@@ -89,5 +89,10 @@ public class UserController { //10.108.4.54:8080
         return userService.viewFriends(payload.get("user_id"));
     }
 
+    @RequestMapping(value = "/search/{name}", method = RequestMethod.GET)
+    public List<UserDTO> searchUsers(@PathVariable String name){
+        return userService.searchResults(name);
+    }
+
 
 }
