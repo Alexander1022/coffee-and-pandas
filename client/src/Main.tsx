@@ -11,11 +11,11 @@ import { PrivateRoute } from './components/PrivateRoute';
 const Main = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
       <Route path='/signup' element={<SignUp />} />
       <Route path='/signin' element={<SignIn />} />
       <Route path='/tos' element={<TOS />} />
       <Route element={<PrivateRoute />}>
+        <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
         <Route path='/map' element={<Map />} />
         <Route path='/events/add' element={<AddEventPage />} />
