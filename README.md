@@ -1,3 +1,4 @@
+<img src="https://raw.githubusercontent.com/Alexander1022/coffee-and-pandas/main/client/src/assets/logo.ico" align="right" width="50" height="50"/>
 
 # Entertizer - Find fun, anytime, anywhere
 
