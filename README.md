@@ -55,6 +55,37 @@ Entertizer is built using the following technology stack:
 #### Database
   1. MySQL
 
+## Routes
+
+URLs | Description
+---------|---------
+ */* | Index page - page where guest user can see a description of the app.
+ */home* | Home page - page where authorised user can see a map of the nearby places, friends list, search bar, and recent events
+ */users/register* | Register page - page where user can register.
+ */users/login* | Login page - page where user can login.
+ */users/add/friends* | Page you get directed to when adding a new friend.
+ */users/friend_requests* | Page where the user can see all the friend requests they have.
+ */users/friends/delete* | Page you get directed to when removing a friend.
+ */users/friends/view/accepted* | My friends page - page where you can see all you friends.
+ */places/addrating* | Rating a place page - page where you can leave a rating on a place from 1 to 5 stars
+ */places/addreview* | Reviewing a place page - page where you can leave a comment on a chosen location
+ */events/add* | Adding a new event on a chosen location
+ */events/delete* | Deleting an event created by the current user
+ */events/inviteFriends* | Inviting friends to an event created by the current user
+ */events/myevents* | View page for the events created by the current user
+ */events/update* | Editing an event created by the current user
+
+
+Database diagram screenshot
+---
+
+ ![databasе](https://github.com/Alexander1022/coffee-and-pandas/blob/main/docs/database/db_diagram.png)
+
+
+Website screenshots
+---
+
+
 ## Contributing
 If you would like to contribute to Entertizer, please fork the repository and create a pull request with your changes. We welcome all contributions and appreciate your help in improving the app.
 
